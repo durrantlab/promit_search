@@ -20,7 +20,7 @@ logs-pred = { features = ["logs-pred"], no-default-feature = true }
 [tasks]
 
 [pypi-dependencies]
-FapC_VS = { path = ".", editable = true }
+promit_search = { path = ".", editable = true }
 gypsum-dl = ">=1.2.7, <2"
 
 [dependencies]
