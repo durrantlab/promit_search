@@ -1,5 +1,5 @@
 # promit_search
-Forked from FapC_VS on 9/9/2026 from commit (8b583a3)[https://github.com/durrantlab/FapC_VS/commit/8b583a34e6b941f09220637099326a526b44a7e4]
+Forked from FapC_VS on 9/9/2026 from commit [8b583a3](https://github.com/durrantlab/FapC_VS/commit/8b583a34e6b941f09220637099326a526b44a7e4)
 
 ### How To Read Project
 
