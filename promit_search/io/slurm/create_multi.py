@@ -4,7 +4,7 @@ from pathlib import Path
 from .create_single import create_single
 from promit_search.io import text
 
-def create_multi(body: list[str], slurm_line: str, output_file: Path, settings: dict = {},
+def create_multi(body: list[str], output_file: Path, settings: dict = {},
                 override_base_settings: bool = False):
     """_summary_
 
@@ -17,16 +17,16 @@ def create_multi(body: list[str], slurm_line: str, output_file: Path, settings: 
     # setup settings
     if not override_base_settings:
         settings["output"] = "logs/%A_%a.out"
-        settings["error"] = "logslogs/%x_%A_%a.err"
+        settings["error"] = "logs/%x_%A_%a.err"
 
     # create slurm
     slurm_body: list[str] = []
     slurm_body.append("""ARGS=$(awk -v line=$((SLURM_ARRAY_TASK_ID + 1)) 'NR == line {print $0}' "job_list.txt")""")
     slurm_body.append("""LOG="${OUT%.sdf}.log" """)
 
-    slurm_body.append(f"""{slurm_line} $ARGS | tee "$LOG" """)
+    slurm_body.append(f"""$ARGS | tee "$LOG" """)
     slurm_body.append("""echo "Done!" """)
-    create_single(body, output_file, settings, override_base_settings)
+    create_single(slurm_body, output_file, settings, override_base_settings)
 
     # create job list
     job_list_path: Path = (output_file.parent / "job_list.txt").resolve()

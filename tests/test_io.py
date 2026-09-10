@@ -48,8 +48,10 @@ def csv_test():
     csv_file.unlink()
 
 def slurm_test():
+    # basic single slurm
     test_file1: Path = Path("input/check1.slurm").resolve()
-    op_file: Path = Path("input/output.slurm").resolve()
+    op_file: Path = Path("output/output.slurm").resolve()
+    gen.dir_create(Path("output"))
     body: list[str] = ["line 1","line 2","line 3"]
     settings = {"mem": "4G", "job-name": "pharm_search",
         "cpus-per-task": "4", "output":"test.out"}
@@ -59,6 +61,22 @@ def slurm_test():
             if not f.read() == f2.read():
                 raise Exception("Single slurm creation invalid")
     op_file.unlink()
+
+    # basic multi slurm test
+    test_file1: Path = Path("input/check2.slurm").resolve()
+    op_file: Path = Path("output/output.slurm").resolve()
+    body: list[str] = ["line 1","line 2","line 3"]
+    settings = {"mem": "4G", "job-name": "pharm_search",
+        "cpus-per-task": "4", "output":"test.out"}
+    slurm.create_multi(body, op_file, settings)
+    with open(test_file1, "r") as f:
+        with open(op_file, "r") as f2:
+            if not f.read() == f2.read():
+                raise Exception("Multi slurm creation invalid")
+    op_file.unlink()
+
+    print("slurm_test is valid")
+    
 
 
 

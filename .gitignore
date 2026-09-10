@@ -22,3 +22,5 @@ package.json
 .pixi
 build
 *.egg-info
+
+tests/output/
