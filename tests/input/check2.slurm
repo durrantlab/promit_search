@@ -14,6 +14,6 @@ module purge
 module load pixi
 
 ARGS=$(awk -v line=$((SLURM_ARRAY_TASK_ID + 1)) 'NR == line {print $0}' "job_list.txt")
-LOG="${OUT%.sdf}.log
-$ARGS | tee "$LOG"
-echo "Done!"
+LOG="${OUT%.sdf}.log 
+$ARGS | tee "$LOG" 
+echo "Done!" 
