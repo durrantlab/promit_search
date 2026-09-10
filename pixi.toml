@@ -36,6 +36,7 @@ requests = ">=2.34.2,<3"
 [target.linux-64.dependencies]
 reduce = ">=4.15,<5"
 
+
 [feature.logs-pred]
 channels = ["conda-forge"]
 platforms = ["linux-64", "osx-64"]
@@ -46,6 +47,15 @@ FapC_VS = { path = ".", editable = true }
 [feature.logs-pred.dependencies]
 python = "==3.7.6"
 aqsolpred_web = { git = "https://github.com/nacefguessaymi/AqSolPred-web.git" }
+
+
+[feature.pharmit.target.linux-64.dependencies]
+pharmit = { url = "https://github.com/durrantlab/pharmit-dl/releases/download/v0.1.3/pharmit-0.1.3-h41f06ac_0.conda" }
+
+[feature.pharmit]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
 
 [feature.dev.dependencies]
 black = ">=23.10.0"
@@ -104,10 +114,3 @@ mkdocs-awesome-nav = ">=3.0.0, <4"
 [feature.docs.tasks]
 docs = { cmd = ["rm", "-rf", "./public/", "&&", "mkdocs", "build", "-d", "public/"], env = {NO_MKDOCS_2_WARNING = "1"} }
 serve = { cmd = ["mkdocs", "serve"] , env = {NO_MKDOCS_2_WARNING = "1"}}
-
-[feature.pharmit.target.linux-64.dependencies]
-pharmit = { url = "https://github.com/durrantlab/pharmit-dl/releases/download/v0.1.3/pharmit-0.1.3-h41f06ac_0.conda" }
-
-[feature.pharmit]
-channels = ["conda-forge"]
-platforms = ["linux-64"]

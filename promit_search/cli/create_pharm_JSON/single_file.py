@@ -2,6 +2,8 @@
 import logging
 from pathlib import Path
 
+from promit_search.io.get_type import get_type
+
 def create_pharm_JSON(molecule_file: str, output_file: str,
     molecule_file_type: str | None = None, create_directories: bool = False):
     """Takes in a file (valid types: SDF), reads in
@@ -20,6 +22,7 @@ def create_pharm_JSON(molecule_file: str, output_file: str,
             Else will crash
     """
     # get molecule_file type
+    file_type: str = get_type
 
     # check validity of molecule_file path
 
