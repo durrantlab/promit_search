@@ -64,7 +64,11 @@ def slurm_test():
 
     # basic multi slurm test
     test_file1: Path = Path("input/check2.slurm").resolve()
+    test_file2: Path = Path("input/check2.sh").resolve()
+    test_file3: Path = Path("job_list.txt").resolve()
     op_file: Path = Path("output/output.slurm").resolve()
+    op_file2: Path = Path("output/output.sh").resolve()
+    op_file3: Path = Path("output/job_list.txt").resolve()
     body: list[str] = ["line 1","line 2","line 3"]
     settings = {"mem": "4G", "job-name": "pharm_search",
         "cpus-per-task": "4", "output":"test.out"}
@@ -72,7 +76,16 @@ def slurm_test():
     with open(test_file1, "r") as f:
         with open(op_file, "r") as f2:
             if not f.read() == f2.read():
-                raise Exception("Multi slurm creation invalid")
+                raise Exception("Multi slurm creation invalid - slurm")
+    with open(test_file2, "r") as f:
+        with open(op_file2, "r") as f2:
+            if not f.read() == f2.read():
+                raise Exception("Multi slurm creation invalid - sh")
+    with open(test_file3, "r") as f:
+        with open(op_file3, "r") as f2:
+            if not f.read() == f2.read():
+                raise Exception("Multi slurm creation invalid - txt")
+
     op_file.unlink()
 
     print("slurm_test is valid")

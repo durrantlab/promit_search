@@ -34,4 +34,4 @@ def create_multi(body: list[str], output_file: Path, settings: dict = {},
 
     # create 
     bash_path: Path = (output_file.parent / f"{output_file.stem}.sh").resolve()
-    text.write(f"sbatch --array=0-{len(body)-1} --export=ALL {output_file.name}\n", bash_path)
+    text.write(f"sbatch --array=0-{len(body)-1} --export=ALL {output_file.name}", bash_path)

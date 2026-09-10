@@ -1,0 +1,1 @@
+sbatch --array=0-2 --export=ALL output.slurm
