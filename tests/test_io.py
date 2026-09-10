@@ -58,6 +58,7 @@ def slurm_test():
         with open(op_file, "r") as f2:
             if not f.read() == f2.read():
                 raise Exception("Single slurm creation invalid")
+    op_file.unlink()
 
 
 

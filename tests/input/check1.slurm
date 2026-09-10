@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=pharm_search                	 		 # Job name
-#SBATCH --cluster=smp				   	 				 # Use cluster with GPU support
-#SBATCH --partition=preempt             				 # Use preempt partion (free)
-#SBATCH --nodes=1                      					 # Number of nodes
-#SBATCH --ntasks=1                     	 				 # Number of tasks
-#SBATCH --cpus-per-task=4             	 				 # Number of CPU cores per task
-#SBATCH --mem=4G                     	 				 # Memory allocation
-#SBATCH --time=12:00:00                    				 # Time limit (D-HH:MM:SS)
+#SBATCH --job-name=pharm_search
+#SBATCH --cluster=smp
+#SBATCH --partition=preempt
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=4G
+#SBATCH --time=12:00:00
 #SBATCH --output=test.out
 
 module purge
