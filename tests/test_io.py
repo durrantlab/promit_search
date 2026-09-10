@@ -49,9 +49,9 @@ def csv_test():
 
 def slurm_test():
     test_file1: Path = Path("input/check1.slurm").resolve()
-    op_file: Path = Path("input/check.slurm").resolve()
-    body: list[str] = ["line 1","line 2","lin 3"]
-    settings = {"op_file": "4G", "name": "pharm_search",
+    op_file: Path = Path("input/output.slurm").resolve()
+    body: list[str] = ["line 1","line 2","line 3"]
+    settings = {"mem": "4G", "job-name": "pharm_search",
         "cpus-per-task": "4", "output":"test.out"}
     slurm.create_single(body, op_file, settings)
     with open(test_file1, "r") as f:
