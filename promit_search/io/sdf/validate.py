@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
 
-from .output_rdkit import output_rdkit
+from .create_rdkit import create_rdkit
 
 
 def validate(sdf_file: Path) -> Chem.SDMolSupplier:
@@ -27,7 +27,7 @@ def validate(sdf_file: Path) -> Chem.SDMolSupplier:
     
     
     # validate SDF and get rdkit molecule(s)
-    supplier = output_rdkit(sdf_file)
+    supplier = create_rdkit(sdf_file)
 
     for mol in supplier:
         if mol == None:

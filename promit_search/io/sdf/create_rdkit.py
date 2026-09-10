@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 
 
-def output_rdkit(sdf_file: Path) -> Chem.SDMolSupplier:
+def create_rdkit(sdf_file: Path) -> Chem.SDMolSupplier:
     """Takes in an SDF file, creates an RDKIT molecule
 
     Args:
@@ -18,11 +18,8 @@ def output_rdkit(sdf_file: Path) -> Chem.SDMolSupplier:
     Returns:
         all molecules in file
     """
-    
-    
     # validate SDF and get rdkit molecule(s)
     supplier = Chem.SDMolSupplier(
         str(sdf_file), sanitize=True, removeHs=False, strictParsing=True
     )
-
     return supplier
