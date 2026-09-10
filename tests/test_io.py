@@ -2,17 +2,25 @@
 from pathlib import Path
 
 from promit_search import io
-from promit_search.io import csv
+from io import gen
+from io import csv
+from io import slurm
 
 
-def get_type_test():
+def gen_test():
     caffeine_file: Path = Path("input/caffeine.sdf").resolve()
     invalid_file: Path = Path("input/caffeine").resolve()
-    if not io.get_type(caffeine_file) == "sdf":
+    if not gen.get_type(caffeine_file) == "sdf":
         raise Exception("Get type invalid for .sdf")
-    if not io.get_type(invalid_file) == None:
+    if not gen.get_type(invalid_file) == None:
         raise Exception("Get type invalid for invalid file type")
-    print("get_type_test is valid")
+    
+    if not gen.file_verify(caffeine_file):
+        raise Exception("File verify is invalid")
+    if not gen.dir_verify(caffeine_file.parent):
+        raise Exception("Dir verify is invalid")    
+    
+    print("gen_test is valid")
 
 
 
@@ -37,10 +45,24 @@ def csv_test():
     read_list = csv.read_list(csv_file)
     if not test_list == read_list:
         raise Exception("csv read or write is invalid")
-    print("get_type_test is valid")
+    print("csv_test is valid")
     csv_file.unlink()
+
+def slurm_test():
+    test_file1: Path = Path("input/check1.slurm").resolve()
+    op_file: Path = Path("input/check.slurm").resolve()
+    body: list[str] = ["line 1","line 2","lin 3"]
+    settings = {"op_file": "4G", "name": "pharm_search",
+        "cpus-per-task": "4", "output":"test.out"}
+    slurm.create_single(body, op_file, settings)
+    with open(test_file1, "r") as f:
+        with open(op_file, "r") as f2:
+            if not f.read() == f2.read():
+                raise Exception("Single slurm creation invalid")
+
 
 
 if __name__ == "__main__":
-    get_type_test()
+    gen_test()
     csv_test()
+    slurm_test()
