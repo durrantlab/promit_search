@@ -65,7 +65,7 @@ def slurm_test():
     # basic multi slurm test
     test_file1: Path = Path("input/check2.slurm").resolve()
     test_file2: Path = Path("input/check2.sh").resolve()
-    test_file3: Path = Path("job_list.txt").resolve()
+    test_file3: Path = Path("input/job_list.txt").resolve()
     op_file: Path = Path("output/output.slurm").resolve()
     op_file2: Path = Path("output/output.sh").resolve()
     op_file3: Path = Path("output/job_list.txt").resolve()
