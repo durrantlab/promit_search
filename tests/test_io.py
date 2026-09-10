@@ -2,6 +2,7 @@
 from pathlib import Path
 
 from promit_search import io
+from promit_search.io import csv
 
 
 def get_type_test():
@@ -22,7 +23,7 @@ def csv_test():
         ["10","12","14","16"],
         ["18","20","22","24"]
         ]
-    read_list = io.csv.read_list(csv_file)
+    read_list = csv.read_list(csv_file)
     if not test_list == read_list:
         raise Exception("csv read is invalid")
     
@@ -32,8 +33,8 @@ def csv_test():
         ["5","6","7","8","9"],
         ["10","11","12","13","14"]
         ]
-    io.csv.write_list(test_list, csv_file)
-    read_list = io.csv.read_list(csv_file)
+    csv.write_list(test_list, csv_file)
+    read_list = csv.read_list(csv_file)
     if not test_list == read_list:
         raise Exception("csv read or write is invalid")
     print("get_type_test is valid")
