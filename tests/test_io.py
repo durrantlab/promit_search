@@ -11,3 +11,8 @@ def get_type_test():
         raise Exception("Get type invalid for .sdf")
     if not io.get_type(invalid_file) == None:
         raise Exception("Get type invalid for invalid file type")
+    print("get_type_test is valid")
+
+
+if __name__ == "__main__":
+    get_type_test()
