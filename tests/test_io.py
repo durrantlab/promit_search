@@ -1,10 +1,9 @@
 
 from pathlib import Path
 
-from promit_search import io
-from io import gen
-from io import csv
-from io import slurm
+from promit_search.io import gen
+from promit_search.io import csv
+from promit_search.io import slurm
 
 
 def gen_test():
