@@ -37,6 +37,7 @@ def csv_test():
     if not test_list == read_list:
         raise Exception("csv read or write is invalid")
     print("get_type_test is valid")
+    csv_file.unlink()
 
 
 if __name__ == "__main__":
