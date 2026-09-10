@@ -2,7 +2,7 @@
 import logging
 from pathlib import Path
 
-from promit_search.io import get_type
+from promit_search.io.gen import get_type
 from promit_search.io import sdf
 
 from .make_pharms import make_pharms
