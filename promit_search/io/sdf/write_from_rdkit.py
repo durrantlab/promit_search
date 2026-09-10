@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 
 
-def write_from_rdkit(mols: Chem.SDMolSupplier, sdf_file: Path):
+def write_from_rdkit(mols: Chem.SDMolSupplier | Chem.Mol, sdf_file: Path):
     """From the molecule supplier, write out all the rdkit
     molecules to an sdf
 
@@ -19,7 +19,10 @@ def write_from_rdkit(mols: Chem.SDMolSupplier, sdf_file: Path):
     """
 
     with Chem.SDWriter(sdf_file) as writer:
-        for mol in mols:
-            if mol is None:      # skip records that failed to parse
-                continue
-            writer.write(mol)
+        if isinstance(mols, Chem.SDMolSupplier):
+            for mol in mols:
+                if mol is None:      # skip records that failed to parse
+                    continue
+                writer.write(mol)
+        else:
+            writer.write(mols)

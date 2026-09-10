@@ -24,7 +24,7 @@ def create_single(body: list[str], output_file: Path, settings: dict = {},
         "cpus-per-task": "32",
         "mem": "32G",
         "time": "12:00:00",
-        "output": "batch.out"
+        "output": f"{output_file.stem}.out"
     }
     if not override_base_settings:
         settings_base.update(settings)

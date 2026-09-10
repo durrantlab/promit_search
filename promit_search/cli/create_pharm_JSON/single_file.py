@@ -8,7 +8,8 @@ from promit_search.io import sdf
 from .make_pharms import make_pharms
 
 def create_pharm_JSON(molecule_file: str, output_file: str,
-    molecule_file_type: str | None = None, create_directories: bool = False):
+    molecule_file_type: str | None = None, create_directories: bool = False,
+    pharmit_run: str = "slurm"):
     """Takes in a file (valid types: SDF), reads in
     the molecule and outputs a pharmacophore JSON
     that can be used with Pharmit
@@ -52,7 +53,10 @@ def create_pharm_JSON(molecule_file: str, output_file: str,
         mols = sdf.validate(mole_file_path)
 
     # create pharmacophores
-    make_pharms(mole_file_path, mols, op_file_path)
+
+    # if doing via slurm job (default)
+    if pharmit_run == "slurm":
+        pharm_slurm(mole_file_path, mols, op_file_path)
      
 
 
