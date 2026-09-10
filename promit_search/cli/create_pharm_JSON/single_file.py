@@ -3,7 +3,6 @@ import logging
 from pathlib import Path
 
 from promit_search.io import get_type
-from promit_search.io.gen import validate_file
 
 def create_pharm_JSON(molecule_file: str, output_file: str,
     molecule_file_type: str | None = None, create_directories: bool = False):
@@ -46,7 +45,7 @@ def create_pharm_JSON(molecule_file: str, output_file: str,
             raise Exception("Output directory input not present")
 
     # IF SDF, run SDF specific code. validate / return molecule(s)
-    
+
 
     # for every molecule
 
