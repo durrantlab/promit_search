@@ -25,23 +25,28 @@ def create_pharm_JSON(molecule_file: str, output_file: str,
     """
 
     # check validity of molecule_file path
-    if(not validate_file(molecule_file)):
+    mole_file_path: Path = Path(molecule_file).resolve()
+    if(not mole_file_path.is_file()):
         raise Exception("Molecule file input not present")
-    molefile_path: Path = Path(molecule_file).resolve()
     
     # get molecule_file type
-    file_type: str = get_type(molefile_path)
+    file_type: str = get_type(mole_file_path)
     if molecule_file_type != None:
         if file_type != molecule_file_type:
             raise Exception("Molecule file type not equal to input")
     if not file_type in ["sdf"]:
         raise Exception("Not a valid file type")
 
-
-
     # check validity of output_file path
+    op_file_path: Path = Path(output_file).resolve()
+    if(not op_file_path.is_dir()):
+        if create_directories:
+            op_file_path.mkdir(parents=True, exist_ok=True)
+        else:
+            raise Exception("Output directory input not present")
 
     # IF SDF, run SDF specific code. validate / return molecule(s)
+    
 
     # for every molecule
 
