@@ -20,4 +20,5 @@ package.json
 
 # pixi environments
 .pixi
+build
 *.egg-info

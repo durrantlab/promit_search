@@ -1,9 +1,9 @@
 [workspace]
 authors = [
-    "FapC_VS <ian.herzogpohl@gmail.com>",
+    "promit_search <ian.herzogpohl@gmail.com>",
 ]
 channels = ["conda-forge", "bioconda"]
-name = "FapC_VS"
+name = "promit_search"
 description = "test"
 platforms = ["win-64", "linux-64",  "osx-64"]
 version = "0.0.0"
@@ -42,7 +42,7 @@ channels = ["conda-forge"]
 platforms = ["linux-64", "osx-64"]
 
 [feature.logs-pred.pypi-dependencies]
-FapC_VS = { path = ".", editable = true }
+promit_search = { path = ".", editable = true }
 
 [feature.logs-pred.dependencies]
 python = "==3.7.6"
@@ -70,15 +70,15 @@ colorama = ">=0.4.6"
 
 [feature.dev.tasks]
 mdlint = { cmd = ["markdownlint-cli2", '"**/*.{md,markdown}"', "--fix", "--config", ".markdownlint.yaml", "||", "true"] }
-isort = { cmd = ["isort", "--settings-path", ".isort.cfg", "./study", "./tests", "./FapC_VS", "||", "true"] }
-black = { cmd = ["black", "--config", ".black.toml", "./study", "./tests", "./FapC_VS", "||", "true"] }
+isort = { cmd = ["isort", "--settings-path", ".isort.cfg", "./study", "./tests", "./promit_search", "||", "true"] }
+black = { cmd = ["black", "--config", ".black.toml", "./study", "./tests", "./promit_search", "||", "true"] }
 format = { depends-on = ["mdlint", "isort", "black"] }
 tests = { cmd = [
     "PYTHONPATH=.",
     "pytest",
     "-c",
     ".pytest.ini",
-    "--cov='FapC_VS'",
+    "--cov='promit_search'",
     "--cov-report=xml",
     "--junit-xml=report.xml",
     "--failed-first",
