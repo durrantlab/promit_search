@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 
 
-def mol_pharm(file_path: Path, molecule: Chem.Mol, output_dir: Path):
+def make_pharms(file_path: Path, molecules: Chem.Mol, output_dir: Path):
 
 
     # get name of molecule

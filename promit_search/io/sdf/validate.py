@@ -17,4 +17,8 @@ def validate(sdf_file: Path) -> Chem.SDMolSupplier:
         str(sdf_file), sanitize=True, removeHs=False, strictParsing=True
     )
 
-    return (supplier)
+    for mol in supplier:
+        if mol == None:
+            raise Exception("Invalid molecule in SDF")
+
+    return supplier

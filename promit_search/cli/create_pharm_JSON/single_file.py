@@ -3,6 +3,9 @@ import logging
 from pathlib import Path
 
 from promit_search.io import get_type
+from promit_search.io import sdf
+
+from .make_pharms import make_pharms
 
 def create_pharm_JSON(molecule_file: str, output_file: str,
     molecule_file_type: str | None = None, create_directories: bool = False):
@@ -45,8 +48,11 @@ def create_pharm_JSON(molecule_file: str, output_file: str,
             raise Exception("Output directory input not present")
 
     # IF SDF, run SDF specific code. validate / return molecule(s)
+    if file_type == "sdf":
+        mols = sdf.validate(mole_file_path)
 
-
-    # for every molecule
+    # create pharmacophores
+    make_pharms(mole_file_path, mols, op_file_path)
+     
 
 
