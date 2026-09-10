@@ -87,7 +87,8 @@ def slurm_test():
                 raise Exception("Multi slurm creation invalid - txt")
 
     op_file.unlink()
-
+    op_file2.unlink()
+    op_file3.unlink()
     print("slurm_test is valid")
     
 
