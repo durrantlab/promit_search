@@ -1,9 +1,0 @@
-[run]
-branch = true
-source = tests
-
-[paths]
-source = FapC_VS
-
-[report]
-show_missing = true
