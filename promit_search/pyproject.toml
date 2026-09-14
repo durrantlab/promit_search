@@ -1,0 +1,26 @@
+[project]
+name = "promit_search"
+authors = [
+    {name = "durrantlab", email = "jdurrant@pitt.edu"}
+]
+description = "Reproducible workflow for generating protein-ligand based interaction pharmacophore searching."
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.10"
+
+# TODO: Keep this here until pixi releases building capabilities
+dependencies = [
+    "loguru>=0.7.2,<1.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm>=8", "wheel"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["promit_search*"]
+
+[tool.setuptools_scm]
+write_to = "promit_search/_version.py"
+version_scheme = "guess-next-dev"
+local_scheme = "node-and-timestamp"
