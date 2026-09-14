@@ -1,3 +1,0 @@
-# YYYY-MM-DD
-
-TODO:
