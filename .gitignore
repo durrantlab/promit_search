@@ -29,3 +29,6 @@ report.xml
 
 # compressed large files
 *.zip
+
+# old FapC-VS codebase
+FapC_VS/
