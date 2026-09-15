@@ -32,3 +32,6 @@ report.xml
 
 # old FapC-VS codebase
 FapC_VS/
+
+# package version file
+promit_search/_version.py
