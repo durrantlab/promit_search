@@ -88,3 +88,6 @@ mkdocs-awesome-nav = ">=3.0.0,<4"
 [feature.docs.tasks]
 docs = { cmd = ["rm", "-rf", "./public/", "&&", "mkdocs", "build", "-d", "public/"] }
 serve = { cmd = ["mkdocs", "serve"] }
+
+[target.linux-64.dependencies]
+pharmit = { url = "https://github.com/durrantlab/pharmit-pixi/releases/download/v0.1.6/pharmit-0.1.6-h41f06ac_0.conda" }
