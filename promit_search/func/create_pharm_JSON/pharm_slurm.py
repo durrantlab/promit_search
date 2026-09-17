@@ -32,7 +32,7 @@ def pharm_slurm(molecules: Chem.Mol, output_dir: Path,
         output_file: Path = output_dir / f"{mol_name}.json"
         sdf_inp: Path = output_dir / f"{mol_name}.sdf"
         sdf.write_from_rdkit(mol, sdf_inp)
-        body.append(f"pixi run -e pharmit pharmit pharma -in {str(sdf_inp)} -out {output_file}")
+        body.append(f"pixi run pharmit pharma -in {str(sdf_inp)} -out {output_file}")
     # setup batch
     if slurm_path == None:
         slurm_path: Path = output_dir / "make_pharms.slurm"

@@ -25,3 +25,11 @@ def make_pharms(molecules: Chem.Mol, output_dir: Path):
         molecules: RDKIT molecules the pharmacophores are being found for
         output_dir: path where SDFs, and Pharmacophore JSONs are placed
     """
+
+    # go through each molecule. Make SDF, and send to site.
+    for mol in molecules:
+        mol_name: str = mol.GetProp("_Name")
+        output_file: Path = output_dir / f"{mol_name}.json"
+        sdf_inp: Path = output_dir / f"{mol_name}.sdf"
+        sdf.write_from_rdkit(mol, sdf_inp)
+
