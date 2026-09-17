@@ -2,7 +2,7 @@
 from pathlib import Path
 
 from promit_search.io import gen 
-from promit_search.func.find_pharms.single_file import single_file
+from .single_file import single_file
 
 def create_pharm_JSON(molecule_dir: str, output_dir: str,
     create_directories: bool = False, pharmit_run: str = "local"):

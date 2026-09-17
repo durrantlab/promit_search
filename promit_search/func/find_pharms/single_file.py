@@ -2,7 +2,6 @@
 import logging
 from pathlib import Path
 
-from promit_search.io.gen import get_type
 from promit_search.io import sdf
 from promit_search.io import gen
 
@@ -43,7 +42,7 @@ def single_file(molecule_file: str, output_dir: str,
         raise Exception(f"Molecule file input not present. {mole_file_path}")
     
     # get molecule_file type
-    file_type: str | None = get_type(mole_file_path)
+    file_type: str | None = gen.get_type(mole_file_path)
     if not file_type in ["sdf"]:
         raise Exception("Not a valid file type")
 

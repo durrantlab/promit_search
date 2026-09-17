@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 from promit_search.io import slurm
 from promit_search.io import sdf
-from promit_search.pharmit.local import get_pharms
+from promit_search.pharmit import local
 
 
 def pharm_local(molecules: Chem.Mol, output_dir: Path):
@@ -32,4 +32,4 @@ def pharm_local(molecules: Chem.Mol, output_dir: Path):
         output_file: Path = output_dir / f"{mol_name}.json"
         sdf_inp: Path = output_dir / f"{mol_name}.sdf"
         sdf.write_from_rdkit(mol, sdf_inp)
-        get_pharms(sdf_inp, output_file)
+        local.get_pharms(sdf_inp, output_file)

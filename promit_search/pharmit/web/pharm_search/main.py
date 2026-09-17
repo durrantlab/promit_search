@@ -14,7 +14,7 @@ class PharmitError(RuntimeError):
     pass
 
 
-def run(
+def main(
     query_path: Path,
     out_path: Path,
     interval: float,

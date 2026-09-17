@@ -1,7 +1,7 @@
 
 from pathlib import Path
 
-from promit_search.io.gen import dir_create
+from .dir_create import dir_create
 
 def dir_verify(dir_path: Path, create: bool = False) -> bool:
     """Determines if the dir exists or not. Can create it
