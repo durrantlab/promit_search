@@ -61,10 +61,10 @@ def single_file(molecule_file: str, output_file: str,
     ## create pharmacophores
     # if doing via slurm job (default)
     if pharmit_run == "slurm":
-        pharm_slurm(mole_file_path, mols, op_file_path)
+        pharm_slurm(mols, op_file_path)
     # if doing via website
     if pharmit_run == "web":
-        pharm_slurm(mole_file_path, mols, op_file_path)
+        pharm_slurm(mols, op_file_path)
 
     # if doing via local install
      
