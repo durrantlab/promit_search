@@ -1,11 +1,13 @@
 
 from promit_search.func.create_pharm_JSON import single_file
+from pathlib import Path
 
 def test_create_pharm_JSON():
     """Status: simply runs, does not validate pharm_json.single_file"""
-    single_file("input/caffeine.sdf","output/create_pharm_json", create_directories=True, pharmit_run="slurm")
-    single_file("input/caffeine.sdf","output/create_pharm_json", create_directories=True,  pharmit_run="web")
-    single_file("input/caffeine.sdf","output/create_pharm_json", create_directories=True,  pharmit_run="local")
+    Path("output/create_pharm_json").unlink()
+    single_file("input/caffeine.sdf","output/create_pharm_json/slurm", create_directories=True, pharmit_run="slurm")
+    single_file("input/caffeine.sdf","output/create_pharm_json/web", create_directories=True,  pharmit_run="web")
+    single_file("input/caffeine.sdf","output/create_pharm_json/local", create_directories=True,  pharmit_run="local")
 
     pass
 
