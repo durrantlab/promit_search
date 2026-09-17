@@ -7,8 +7,10 @@ from promit_search.io import sdf
 from promit_search.io import gen
 
 from .pharm_slurm import pharm_slurm
+from .pharm_web import pharm_web
+from .pharm_local import pharm_local
 
-def single_file(molecule_file: str, output_file: str,
+def single_file(molecule_file: str, output_dir: str,
     create_directories: bool = False, pharmit_run: str = "slurm"):
     """Takes in a file, reads in
     the molecule(s) and outputs pharmacophore JSON(s)
@@ -46,10 +48,10 @@ def single_file(molecule_file: str, output_file: str,
         raise Exception("Not a valid file type")
 
     # check validity of output_file path
-    op_file_path: Path = Path(output_file).resolve()
-    if(not op_file_path.is_dir()):
+    output_dir: Path = Path(output_dir).resolve()
+    if(not output_dir.is_dir()):
         if create_directories:
-            op_file_path.mkdir(parents=True, exist_ok=True)
+            output_dir.mkdir(parents=True, exist_ok=True)
         else:
             raise Exception("Output directory input not present")
 
@@ -61,12 +63,13 @@ def single_file(molecule_file: str, output_file: str,
     ## create pharmacophores
     # if doing via slurm job (default)
     if pharmit_run == "slurm":
-        pharm_slurm(mols, op_file_path)
+        pharm_slurm(mols, output_dir)
     # if doing via website
     if pharmit_run == "web":
-        pharm_slurm(mols, op_file_path)
-
+        pharm_web(mols, output_dir)
     # if doing via local install
-     
+    if pharmit_run == "local":
+        pharm_local(mols, output_dir)
+
 
 

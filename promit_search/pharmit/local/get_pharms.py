@@ -1,0 +1,19 @@
+
+
+from pathlib import Path
+import subprocess
+
+
+def get_pharms(sdf_file: Path, out_file: Path):
+    """Will take in the SDF file and output the pharm json
+    in out_file.
+
+    Args:
+        sdf_file: path with SDF finding the pharmacophores for
+        out_file: where the result is placed
+    """
+
+    subprocess.run(
+        ["pharmit", "pharma", "-in", str(sdf_file), "-out", str(out_file)],
+        check=True
+    )
