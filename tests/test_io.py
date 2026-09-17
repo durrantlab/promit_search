@@ -7,6 +7,7 @@ from promit_search.io import slurm
 
 
 def gen_test():
+    """Status: runs and validates all functions in promit_search.io.gen"""
     caffeine_file: Path = Path("input/caffeine.sdf").resolve()
     invalid_file: Path = Path("input/test_io/caffeine").resolve()
     if not gen.get_type(caffeine_file) == "sdf":
@@ -24,6 +25,7 @@ def gen_test():
 
 
 def csv_test():
+    """Status: runs and validates all functions in promit_search.io.csv"""
     csv_file: Path = Path("input/test_io/test1.csv").resolve()
     test_list: list[list[str]] = [
         ["2","4","6","8"],
@@ -48,6 +50,7 @@ def csv_test():
     csv_file.unlink()
 
 def slurm_test():
+    """Status: runs and validates all functions in promit_search.io.slurm"""
     # basic single slurm
     test_file1: Path = Path("input/test_io/check1.slurm").resolve()
     op_file: Path = Path("output/output.slurm").resolve()
@@ -90,11 +93,17 @@ def slurm_test():
     op_file3.unlink()
     
     print("slurm_test is valid")
-    
 
+def sdf_test():
+    """Status: nothing down for promit_search.io.sdf"""
+    pass 
+
+
+"""Note: text is so simple, does not need validation"""
 
 
 if __name__ == "__main__":
     gen_test()
     csv_test()
     slurm_test()
+    sdf_test()

@@ -5,9 +5,6 @@ from loguru import logger
 
 SERVER = "https://pharmit.csb.pitt.edu/fcgi-bin/pharmitserv.fcgi"
 
-# file extensions the server treats as an already-built pharmacophore query
-# (parsed directly) rather than as molecular data to derive features from
-QUERY_FORMATS = {".json", ".query", ".ph4", ".pml", ".txt"}
 
 from .upload_receptor import upload_receptor
 from .get_pharmacophores import get_pharmacophores
