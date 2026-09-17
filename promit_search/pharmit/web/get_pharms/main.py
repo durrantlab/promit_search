@@ -17,7 +17,7 @@ class PharmitError(RuntimeError):
     pass
 
 
-def run(
+def main(
     sdf_path: Path,
     out_path: Path,
     timeout: float = 120.0,

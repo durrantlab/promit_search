@@ -2,11 +2,11 @@
 import argparse
 from pathlib import Path
 
-from .main import run
+from .main import main
 
 
 
-def main(argv: list[str] | None = None) -> int:
+def cli(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Upload an SDF ligand to the Pharmit server and download the "
         "derived pharmacophore JSON."
@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    ok = run(
+    ok = main(
         sdf_path=args.sdf,
         out_path=args.out,
         timeout=args.timeout,
