@@ -38,7 +38,7 @@ def single_file(molecule_file: str, output_file: str,
     # check validity of molecule_file path
     mole_file_path: Path = Path(molecule_file).resolve()
     if(gen.file_verify(mole_file_path)):
-        raise Exception("Molecule file input not present")
+        raise Exception(f"Molecule file input not present. {mole_file_path}")
     
     # get molecule_file type
     file_type: str | None = get_type(mole_file_path)
