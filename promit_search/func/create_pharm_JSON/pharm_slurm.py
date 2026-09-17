@@ -12,7 +12,7 @@ from promit_search.io import slurm
 from promit_search.io import sdf
 
 
-def make_pharms(molecules: Chem.Mol, output_dir: Path,
+def pharm_slurm(molecules: Chem.Mol, output_dir: Path,
                 slurm_path: Path | None = None):
     """Will print all RDKIT molecules as seperate SDF files,
     will then create slurm batch script to run it async later.

@@ -1,3 +1,3 @@
-from .create_pharm_JSON_single import create_pharm_JSON_single
+from .single_file import single_file
 
-__all__ = ["create_pharm_JSON_single"]
+__all__ = ["single_file"]
