@@ -49,11 +49,8 @@ def single_file(molecule_file: str, output_dir: str,
 
     # check validity of output_file path
     output_dir: Path = Path(output_dir).resolve()
-    if(not output_dir.is_dir()):
-        if create_directories:
-            output_dir.mkdir(parents=True, exist_ok=True)
-        else:
-            raise Exception("Output directory input not present")
+    if not gen.dir_verify(output_dir, create_directories):
+        raise Exception("Output directory input not present")
 
     ## validate file type, and get molecules inside
     # IF SDF, run SDF specific code. validate / return molecule(s)
