@@ -1,5 +1,5 @@
 
-from promit_search.func.create_pharm_JSON import single_file
+from promit_search.func.find_pharms import single_file
 from pathlib import Path
 import shutil
 
