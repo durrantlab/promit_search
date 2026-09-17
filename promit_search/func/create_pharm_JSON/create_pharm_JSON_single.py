@@ -8,7 +8,7 @@ from promit_search.io import gen
 
 from .pharm_slurm import pharm_slurm
 
-def create_pharm_JSON(molecule_file: str, output_file: str,
+def create_pharm_JSON_single(molecule_file: str, output_file: str,
     create_directories: bool = False, pharmit_run: str = "slurm"):
     """Takes in a file, reads in
     the molecule(s) and outputs pharmacophore JSON(s)
@@ -63,6 +63,8 @@ def create_pharm_JSON(molecule_file: str, output_file: str,
     if pharmit_run == "slurm":
         pharm_slurm(mole_file_path, mols, op_file_path)
     # if doing via website
+    if pharmit_run == "web":
+        pharm_slurm(mole_file_path, mols, op_file_path)
 
     # if doing via local install
      
