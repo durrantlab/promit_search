@@ -11,6 +11,3 @@ def test_web_search():
     enable_logging(level_set=20,file_path="output/pharmit_search/op.log")
     get_pharms.main(Path("input/caffeine.sdf"), Path("output/pharmit_search/op.json"))
 
-
-if __name__ == "__main__":
-    test_web_search()

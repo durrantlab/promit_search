@@ -16,5 +16,3 @@ def test_create_pharm_JSON():
 
 
 
-if __name__ == "__main__":
-    test_create_pharm_JSON()

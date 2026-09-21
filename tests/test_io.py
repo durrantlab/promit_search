@@ -4,27 +4,27 @@ from pathlib import Path
 from promit_search.io import gen
 from promit_search.io import csv
 from promit_search.io import slurm
+import pytest
 
-
-def gen_test():
+def test_gen(caffeine_sdf):
     """Status: runs and validates all functions in promit_search.io.gen"""
-    caffeine_file: Path = Path("input/caffeine.sdf").resolve()
     invalid_file: Path = Path("input/test_io/caffeine").resolve()
-    if not gen.get_type(caffeine_file) == "sdf":
-        raise Exception("Get type invalid for .sdf")
+    assert gen.get_type(caffeine_sdf) == "sdf"
+    with pytest.raises(FileNotFoundError):
+        gen.get_type(Path("not/real/file.sdf"))
     if not gen.get_type(invalid_file) == None:
         raise Exception("Get type invalid for invalid file type")
     
-    if not gen.file_verify(caffeine_file):
+    if not gen.file_verify(caffeine_sdf):
         raise Exception("File verify is invalid")
-    if not gen.dir_verify(caffeine_file.parent):
+    if not gen.dir_verify(caffeine_sdf.parent):
         raise Exception("Dir verify is invalid")    
     
     print("gen_test is valid")
 
 
 
-def csv_test():
+def test_csv():
     """Status: runs and validates all functions in promit_search.io.csv"""
     csv_file: Path = Path("input/test_io/test1.csv").resolve()
     test_list: list[list[str]] = [
@@ -49,7 +49,7 @@ def csv_test():
     print("csv_test is valid")
     csv_file.unlink()
 
-def slurm_test():
+def test_slurm():
     """Status: runs and validates all functions in promit_search.io.slurm"""
     # basic single slurm
     test_file1: Path = Path("input/test_io/check1.slurm").resolve()
@@ -94,16 +94,10 @@ def slurm_test():
     
     print("slurm_test is valid")
 
-def sdf_test():
+def test_sdf():
     """Status: nothing down for promit_search.io.sdf"""
     pass 
 
 
 """Note: text is so simple, does not need validation"""
 
-
-if __name__ == "__main__":
-    gen_test()
-    csv_test()
-    slurm_test()
-    sdf_test()
