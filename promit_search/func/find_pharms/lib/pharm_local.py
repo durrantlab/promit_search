@@ -14,6 +14,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 from promit_search.io import slurm
 from promit_search.io import sdf
 from promit_search.pharmit import local
+from promit_search.io import gen
 
 
 def pharm_local(molecules: Chem.Mol, output_dir: Path):

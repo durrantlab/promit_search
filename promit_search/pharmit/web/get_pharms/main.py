@@ -42,6 +42,9 @@ def main(
 
     Returns:
         Boolean if the server returned a pharmacophore with at least one point
+    
+    Warns:
+        Warning: If pharmit output file already exists
     """
     if out_path.is_file():
         logger.warning("PHARMIT OUTPUT FILE ALREADY EXISTS. OVERWRITING")
