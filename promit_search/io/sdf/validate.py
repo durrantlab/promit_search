@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import warnings
+from loguru import logger
 
 with warnings.catch_warnings(record=True):
     from rdkit import Chem
@@ -21,11 +22,11 @@ def validate(sdf_file: Path) -> Chem.SDMolSupplier:
     Args:
         sdf_file: SDF with molecules
 
-    Raises:
-        Exception: if a molecule in SDF is invalid
-
     Returns:
         all molecules in file
+
+    Raises:
+        Exception: if a molecule in SDF is invalid
     """
     
     
@@ -34,6 +35,8 @@ def validate(sdf_file: Path) -> Chem.SDMolSupplier:
 
     for mol in supplier:
         if mol == None:
-            raise Exception("Invalid molecule in SDF")
+            mess = f"Invalid molecule in SDF {sdf_file}"
+            logger.info(mess)
+            raise Exception(mess)
 
     return supplier

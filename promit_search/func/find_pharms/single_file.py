@@ -9,7 +9,7 @@ from promit_search.io import gen
 
 from .lib import *
 
-def single_file(molecule_file: str, output_dir: str,
+def single_file(molecule_file: str | Path, output_dir: str | Path,
     create_directories: bool = False, pharmit_run: str = "slurm"):
     """Takes in a file, reads in
     the molecule(s) and outputs pharmacophore JSON(s)
@@ -38,18 +38,14 @@ def single_file(molecule_file: str, output_dir: str,
 
     # check validity of molecule_file path
     mole_file_path: Path = Path(molecule_file).resolve()
-    if(not gen.file_verify(mole_file_path)):
-        raise Exception(f"Molecule file input not present. {mole_file_path}")
+    gen.file_verify(mole_file_path)
     
     # get molecule_file type
-    file_type: str | None = gen.get_type(mole_file_path)
-    if not file_type in ["sdf"]:
-        raise Exception("Not a valid file type")
+    file_type = gen.type_verify(mole_file_path, ["sdf"])
 
     # check validity of output_file path
     output_dir: Path = Path(output_dir).resolve()
-    if not gen.dir_verify(output_dir, create_directories):
-        raise Exception("Output directory input not present")
+    gen.dir_verify(output_dir, create_directories)
 
     ## validate file type, and get molecules inside
     # IF SDF, run SDF specific code. validate / return molecule(s)

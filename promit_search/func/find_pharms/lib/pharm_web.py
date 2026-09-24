@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import warnings
+from loguru import logger
 
 with warnings.catch_warnings(record=True):
     from rdkit import Chem

@@ -2,6 +2,7 @@
 """Takes in a directory with molecule file types, and runs pharmit's pharmacophore generation"""
 
 from pathlib import Path
+from loguru import logger
 
 from promit_search.io import gen 
 from .single_file import single_file
@@ -39,8 +40,7 @@ def multi_file(molecule_dir: str, output_dir: str,
     all_files: list[Path] = gen.find_files_rec(molecule_dir, ["sdf"])
     # check if output dir exists
     output_dir: Path = Path(output_dir).resolve()
-    if not gen.dir_verify(output_dir, create_directories):
-        raise Exception("Output directory input not present")
+    gen.dir_verify(output_dir, create_directories)
     # go through files and run
     for file in all_files:
         file_op_dir: Path = output_dir / file.name 

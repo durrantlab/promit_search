@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import warnings
+from loguru import logger
 
 with warnings.catch_warnings(record=True):
     from rdkit import Chem
@@ -33,6 +34,7 @@ def pharm_slurm(molecules: Chem.Mol, output_dir: Path,
         mol_name: str = mol.GetProp("_Name")
         output_file: Path = output_dir / f"{mol_name}.json"
         sdf_inp: Path = output_dir / f"{mol_name}.sdf"
+        logger.info(f"Adding {mol_name} to slurm")
         sdf.write_from_rdkit(mol, sdf_inp)
         body.append(f"pixi run pharmit pharma -in {str(sdf_inp)} -out {output_file}")
     # setup batch

@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import warnings
+from loguru import logger
 
 with warnings.catch_warnings(record=True):
     from rdkit import Chem
@@ -22,6 +23,7 @@ def create_rdkit(sdf_file: Path) -> Chem.SDMolSupplier:
         all molecules in file
     """
     # validate SDF and get rdkit molecule(s)
+    logger.info(f"Reading in {sdf_file}")
     supplier = Chem.SDMolSupplier(
         str(sdf_file), sanitize=True, removeHs=False, strictParsing=True
     )
