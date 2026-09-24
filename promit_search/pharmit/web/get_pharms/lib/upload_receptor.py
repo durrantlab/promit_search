@@ -1,3 +1,6 @@
+
+""" Optional: uploads a receptor to website """
+
 from pathlib import Path
 import requests
 import hashlib

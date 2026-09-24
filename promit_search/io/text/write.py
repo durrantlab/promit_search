@@ -1,4 +1,6 @@
 
+""" write out a .txt file from a string """
+
 from pathlib import Path
 
 

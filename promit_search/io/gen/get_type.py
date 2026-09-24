@@ -1,4 +1,6 @@
 
+""" Determiens type of a file """
+
 from pathlib import Path
 from loguru import logger
 

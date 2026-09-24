@@ -1,4 +1,6 @@
 
+""" Determines if a directory exists and returns if does or not"""
+
 from pathlib import Path
 
 from .dir_create import dir_create

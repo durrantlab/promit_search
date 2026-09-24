@@ -1,4 +1,6 @@
 
+""" Determines if a file exists """
+
 from pathlib import Path
 
 

@@ -1,4 +1,6 @@
 
+""" runs pharmit's pharmacophore generation using local install"""
+
 from pathlib import Path
 import warnings
 
@@ -10,10 +12,10 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 from promit_search.io import slurm
 from promit_search.io import sdf
-from promit_search.pharmit.web import get_pharms
+from promit_search.pharmit import local
 
 
-def pharm_web(molecules: Chem.Mol, output_dir: Path):
+def pharm_local(molecules: Chem.Mol, output_dir: Path):
     """Will print all RDKIT molecules as seperate SDF files,
     will then upload each to website, then download resulting pharmacophore
     JSON.
@@ -32,4 +34,4 @@ def pharm_web(molecules: Chem.Mol, output_dir: Path):
         output_file: Path = output_dir / f"{mol_name}.json"
         sdf_inp: Path = output_dir / f"{mol_name}.sdf"
         sdf.write_from_rdkit(mol, sdf_inp)
-        get_pharms.main(sdf_inp, output_file)
+        local.get_pharms(sdf_inp, output_file)

@@ -1,3 +1,6 @@
+
+""" Helps write / edit SDF files """
+
 from .write_from_rdkit import write_from_rdkit
 from .create_rdkit import create_rdkit
 from .validate import validate

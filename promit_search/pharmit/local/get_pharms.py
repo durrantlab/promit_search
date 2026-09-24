@@ -1,4 +1,5 @@
 
+""" takes in an sdf file, runs pharmacophore generation, and returns json """
 
 from pathlib import Path
 import subprocess

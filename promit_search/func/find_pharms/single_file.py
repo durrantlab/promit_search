@@ -1,13 +1,13 @@
 
+"""Takes in a molecule file and runs pharmit's pharmacophore generation"""
+
 import logging
 from pathlib import Path
 
 from promit_search.io import sdf
 from promit_search.io import gen
 
-from .pharm_slurm import pharm_slurm
-from .pharm_web import pharm_web
-from .pharm_local import pharm_local
+from .lib import *
 
 def single_file(molecule_file: str, output_dir: str,
     create_directories: bool = False, pharmit_run: str = "slurm"):

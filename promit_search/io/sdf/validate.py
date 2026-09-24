@@ -1,3 +1,6 @@
+
+""" Checks that a SDF file is valid """
+
 from pathlib import Path
 import warnings
 

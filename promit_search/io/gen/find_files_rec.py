@@ -1,4 +1,6 @@
 
+""" finds files with a list of endings in a directory recursively """
+
 from pathlib import Path
 
 def find_files_rec(dir: Path, valid_types: list[str] = []) -> list[Path]:

@@ -1,9 +1,10 @@
 
+""" sets up a CLI for pharmacophores from web """
+
 import argparse
 from pathlib import Path
 
 from .main import main
-
 
 
 def cli(argv: list[str] | None = None) -> int:

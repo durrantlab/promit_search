@@ -1,4 +1,6 @@
 
+""" gets pharmacophores from web by uploading molecule """
+
 import requests
 from loguru import logger
 SERVER = "https://pharmit.csb.pitt.edu/fcgi-bin/pharmitserv.fcgi"

@@ -1,10 +1,12 @@
 
+"""Takes in a directory with molecule file types, and runs pharmit's pharmacophore generation"""
+
 from pathlib import Path
 
 from promit_search.io import gen 
 from .single_file import single_file
 
-def create_pharm_JSON(molecule_dir: str, output_dir: str,
+def multi_file(molecule_dir: str, output_dir: str,
     create_directories: bool = False, pharmit_run: str = "local"):
     """Takes in a folder, reads in all
     files of a known type and outputs a pharmacophore JSON

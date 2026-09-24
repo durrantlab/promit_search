@@ -1,3 +1,6 @@
+
+""" Wrapper around pharmit's pharmacophore generation from molecule file """
+
 from .single_file import single_file
 from .multi_file import multi_file
 

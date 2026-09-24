@@ -1,4 +1,6 @@
 
+""" writes a list of lists to a csv """
+
 from pathlib import Path 
 
 

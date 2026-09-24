@@ -1,4 +1,6 @@
 
+""" Create a slurm script that runs all code in 1 job """
+
 from pathlib import Path 
 
 from promit_search.io import text

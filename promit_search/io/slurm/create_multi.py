@@ -1,4 +1,6 @@
 
+""" Create a slurm file that will split commands over many jobs """
+
 from pathlib import Path 
 
 from .create_single import create_single

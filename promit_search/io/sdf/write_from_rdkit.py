@@ -1,3 +1,6 @@
+
+""" Take in a list of rdkit molecules and write SDFs """
+
 from pathlib import Path
 import warnings
 

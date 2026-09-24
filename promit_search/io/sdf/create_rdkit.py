@@ -1,3 +1,6 @@
+
+""" Create an rdkit molecule list from a sdf file """
+
 from pathlib import Path
 import warnings
 

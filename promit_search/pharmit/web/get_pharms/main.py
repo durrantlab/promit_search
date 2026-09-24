@@ -1,3 +1,6 @@
+
+""" main function that returns the pharmacophores """
+
 import json
 from pathlib import Path
 import requests
@@ -6,9 +9,7 @@ from loguru import logger
 SERVER = "https://pharmit.csb.pitt.edu/fcgi-bin/pharmitserv.fcgi"
 
 
-from .upload_receptor import upload_receptor
-from .get_pharmacophores import get_pharmacophores
-from .save_pharmacophores import save_pharmacophores
+from .lib import *
 
 class PharmitError(RuntimeError):
     pass

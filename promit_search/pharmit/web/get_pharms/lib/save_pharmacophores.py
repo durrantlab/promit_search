@@ -1,4 +1,5 @@
 
+""" takes in pharmacophore JSOn and writes it """
 
 from pathlib import Path 
 from loguru import logger 

@@ -1,4 +1,6 @@
 
+""" Creates a dir path if it doesnt exist """
+
 from pathlib import Path
 
 def dir_create(dir_path: Path) -> bool:

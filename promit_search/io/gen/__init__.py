@@ -1,4 +1,7 @@
 
+""" Helps verify / created directories and files """
+
+
 from .dir_create import dir_create 
 from .dir_verify import dir_verify
 from .file_verify import file_verify

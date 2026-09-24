@@ -1,4 +1,6 @@
 
+""" sets up pharmit pharmacophore generation to be run on slurm """
+
 from pathlib import Path
 import warnings
 
