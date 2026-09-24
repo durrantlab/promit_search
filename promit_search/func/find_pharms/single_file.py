@@ -29,7 +29,8 @@ def single_file(molecule_file: str | Path, output_dir: str | Path,
             Else will crash
         pharmit_run: how pharmit will be run. 
             "slurm": creates batch job script in output
-                directory that submits Pharmit job
+                directory that submits Pharmit job.
+                Called make_pharms.slurm in input dir.
             "web": will use the website's API to get
                 pharmacophores
             "local": will use locally installed version

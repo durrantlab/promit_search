@@ -3,6 +3,20 @@ from promit_search.func.find_pharms import single_file
 from pathlib import Path
 import shutil
 
+# test slurm created is correct
+def test_slurm(caffeine_sdf):
+
+
+# test that web output is valid
+
+
+
+# test that local output is valid
+
+
+# test that local and web are similar
+
+
 def test_create_pharm_JSON():
     """Status: simply runs, does not validate pharm_json.single_file"""
     if Path("output/create_pharm_json").is_dir():

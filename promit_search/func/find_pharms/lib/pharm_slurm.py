@@ -26,7 +26,7 @@ def pharm_slurm(molecules: Chem.Mol, output_dir: Path,
     Args:
         molecules: RDKIT molecules the pharmacophores are being found for
         output_dir: path where SDFs, slurm script, and Pharmacophore JSONs
-        slurm_path: Where slurm will be placed. Defaults to output_dir.
+        slurm_path: Where slurm will be placed. Defaults to make_pharms.slurm
     """
     body: list[str] = []
     # go through each molecule. Make SDF, and add to slurm script.
