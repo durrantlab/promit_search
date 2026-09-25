@@ -5,7 +5,7 @@ import shutil
 
 # test slurm created is correct
 def test_slurm(caffeine_sdf):
-
+    pass
 
 # test that web output is valid
 
