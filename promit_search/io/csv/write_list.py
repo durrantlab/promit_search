@@ -17,7 +17,7 @@ def write_list(lst: list[list[str]], csv_path: Path, create_dir: bool = False):
         FileNotFound: if directory does not exist, and create_dir is false
         Exception: if tried to create directory and could not
     """
-    gen.dir_verify(csv_path, create_dir)
+    gen.dir_verify(csv_path.parent, create_dir)
     gen.file_exist_warn(csv_path, "overwriting file")
 
     with open(csv_path, "w") as f:
