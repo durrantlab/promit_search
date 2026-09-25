@@ -4,6 +4,8 @@
 from pathlib import Path
 from loguru import logger
 
+from .file_verify import file_verify
+
 def get_type(file: Path) -> str | None:
     """Returns the type of the file. Always lowercase
 
@@ -17,13 +19,10 @@ def get_type(file: Path) -> str | None:
     Raise:
         FileNotFoundError: if file does not exist
     """
-    try:
-        ending: str = file.suffix
-        if ending.startswith("."):
-            return file.suffix[1:].lower()
-        else:
-            return None
-    except:
-        mess: str = f"The file {file} is not found"
-        logger.error(mess)
-        raise FileNotFoundError(mess)
+    file_verify(file)
+    
+    ending: str = file.suffix
+    if ending.startswith("."):
+        return file.suffix[1:].lower()
+    else:
+        return None
