@@ -33,7 +33,10 @@ def find_files_rec(dir: Path, valid_types: list[str] = [],
     # normalize: guarantee a leading dot, lowercase for case-insensitive matching
     valid = [s.lower() if s.startswith(".") else f".{s.lower()}" for s in valid_types]
     items = dir.rglob("*")
-    files: list[Path] = sorted(p for p in items if p.is_file() and p.suffix.lower() in valid)
+    if len(valid) > 0:
+        files: list[Path] = sorted(p for p in items if p.is_file() and p.suffix.lower() in valid)
+    else:
+        files: list[Path] = sorted(p for p in items if p.is_file())
 
     # raise error if invalid file
     if empty_error and len(files) == 0:
