@@ -24,3 +24,6 @@ include = ["promit_search*"]
 write_to = "promit_search/_version.py"
 version_scheme = "guess-next-dev"
 local_scheme = "node-and-timestamp"
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
