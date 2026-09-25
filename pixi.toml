@@ -46,15 +46,13 @@ isort = { cmd = ["isort", "--settings-path", ".isort.cfg", "./promit_search", ".
 ruff = { cmd = ["ruff", "--config", ".ruff.toml", "./promit_search", "./tests", "||", "true"] }
 format = { depends-on = ["mdlint", "isort", "ruff"] }
 tests = { cmd = [
-    "PYTHONPATH=.",
     "pytest",
-    "-c",
-    ".pytest.ini",
-    "--cov='promit_search'",
+    "-c", ".pytest.ini",
+    "--cov=promit_search",
     "--cov-report=xml",
     "--junit-xml=report.xml",
     "--failed-first",
-]}
+], env = { PYTHONPATH = "." } }
 coverage = { cmd = ["coverage", "report"] }
 cleanup-build = { cmd = ["rm", "-rf", "./build"] }
 build = { cmd = ["python3", "-m", "build"], depends-on = ["cleanup-build"]}
