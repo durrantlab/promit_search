@@ -84,7 +84,7 @@ def test_get_type(caffeine_sdf):
         gen.get_type(fake_dir)
     fake_dir = LOCAL_DIR / "input" / "none"
     assert gen.get_type(fake_dir) == None
-    fake_dir = LOCAL_DIR / "input" / "rec.Sdf"
+    fake_dir = LOCAL_DIR / "input" / "rec.sdf"
     assert gen.get_type(fake_dir) == "sdf"
 
 
