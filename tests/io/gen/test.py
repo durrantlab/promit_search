@@ -85,5 +85,15 @@ def test_get_type(caffeine_sdf):
     assert gen.get_type(fake_dir) == "sdf"
 
 
+def test_type_verify(caffeine_sdf):
+    assert(gen.type_verify(caffeine_sdf, ["sdf"]) == "sdf")
+    assert(gen.type_verify(caffeine_sdf, ["sdf","txt"]) == "sdf")
+    with pytest.raises(Exception):
+        gen.type_verify(caffeine_sdf, ["txt"])
+    fake_dir = LOCAL_DIR / "input" / "none"
+    with pytest.raises(Exception):
+        gen.type_verify(fake_dir, ["txt"])
+    with pytest.raises(Exception):
+        gen.type_verify(caffeine_sdf, [])
 
 
