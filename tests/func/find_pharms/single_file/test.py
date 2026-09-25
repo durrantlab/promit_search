@@ -17,14 +17,14 @@ def test_slurm(caffeine_sdf):
 # test that local and web are similar
 
 
-def test_create_pharm_JSON():
+def test_create_pharm_JSON(caffeine_sdf):
     """Status: simply runs, does not validate pharm_json.single_file"""
     if Path("output/create_pharm_json").is_dir():
         shutil.rmtree(Path("output/create_pharm_json"))
 
-    single_file("input/caffeine.sdf","output/create_pharm_json/slurm", create_directories=True, pharmit_run="slurm")
-    single_file("input/caffeine.sdf","output/create_pharm_json/web", create_directories=True,  pharmit_run="web")
-    single_file("input/caffeine.sdf","output/create_pharm_json/local", create_directories=True,  pharmit_run="local")
+    single_file(caffeine_sdf,"output/create_pharm_json/slurm", create_directories=True, pharmit_run="slurm")
+    single_file(caffeine_sdf,"output/create_pharm_json/web", create_directories=True,  pharmit_run="web")
+    single_file(caffeine_sdf,"output/create_pharm_json/local", create_directories=True,  pharmit_run="local")
 
     pass
 
