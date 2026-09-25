@@ -20,7 +20,8 @@ def test_read_dne(test3_csv: Path):
         csv.read_list(test3_csv)
 
 def test_write(test2_csv: Path):
-    test2_csv.unlink()
+    if test2_csv.is_file():
+        test2_csv.unlink()
     test_list: list[list[str]] = [
         ["0","1","2","3","4"],
         ["5","6","7","8","9"],

@@ -11,20 +11,23 @@ LOCAL_DIR = Path(os.path.dirname(__file__))
 
 def test_dir_create():
     fake_dir = LOCAL_DIR / "output" / "test_dir"
-    fake_dir.rmdir()
+    if fake_dir.is_dir():
+        fake_dir.rmdir()
     assert(not gen.dir_create(fake_dir))
     assert(gen.dir_create(fake_dir))
 
 
 def test_dir_verify():
     fake_dir = LOCAL_DIR / "output" / "test_dir"
-    fake_dir.rmdir()
+    if fake_dir.is_dir():
+        fake_dir.rmdir()
     with pytest.raises(FileNotFoundError):
         gen.dir_verify(fake_dir)
 
 def test_dir_verify2():
     fake_dir = LOCAL_DIR / "output" / "test_dir"
-    fake_dir.rmdir()
+    if fake_dir.is_dir():
+        fake_dir.rmdir()
     assert(gen.dir_verify(fake_dir, create=True))
     assert(fake_dir.is_dir())
 
