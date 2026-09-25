@@ -25,6 +25,7 @@ rdkit = ">=2026.3.5,<2027"
 numpy = ">=2.5.3,<3"
 scipy = ">=1.18.1,<2"
 requests = ">=2.34.2,<3"
+pytest = ">=7.4.2"
 
 [feature.dev.dependencies]
 isort = ">=5.12.0"

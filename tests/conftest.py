@@ -1,10 +1,9 @@
-import os
 
 import pytest
 from promit_search import enable_logging
 from pathlib import Path
 
-TEST_DIR = os.path.dirname(__file__)
+DIR_SCRIPT: Path = Path(__file__).parent.resolve()
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -13,4 +12,4 @@ def turn_on_logging():
 
 @pytest.fixture
 def caffeine_sdf():
-    return Path("input/caffeine.sdf").resolve()
+    return DIR_SCRIPT / "input" / "caffeine.sdf"

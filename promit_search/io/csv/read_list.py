@@ -1,7 +1,8 @@
 
 """ writes a csv to a list of lists """
 
-from pathlib import Path 
+from pathlib import Path
+from promit_search.io import gen 
 
 
 def read_list(file_path: Path) -> list[list[str]]:
@@ -12,7 +13,11 @@ def read_list(file_path: Path) -> list[list[str]]:
 
     Returns:
         the csv contents as a list of lists
+    
+    Exceptions:
+        FileNotFound: if file does not exist
     """
+    gen.file_verify(file_path)
 
     with open(file_path, "r") as f:
         ret: list[list[str]] = [item.split(",") for item in f.read().split("\n")]

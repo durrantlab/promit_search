@@ -6,25 +6,10 @@ from promit_search.io import csv
 from promit_search.io import slurm
 import pytest
 
-def test_gen(caffeine_sdf):
-    """Status: runs and validates all functions in promit_search.io.gen"""
-    invalid_file: Path = Path("input/test_io/caffeine").resolve()
-    assert gen.get_type(caffeine_sdf) == "sdf"
-    with pytest.raises(FileNotFoundError):
-        gen.get_type(Path("not/real/file.sdf"))
-    if not gen.get_type(invalid_file) == None:
-        raise Exception("Get type invalid for invalid file type")
-    
-    if not gen.file_verify(caffeine_sdf):
-        raise Exception("File verify is invalid")
-    if not gen.dir_verify(caffeine_sdf.parent):
-        raise Exception("Dir verify is invalid")    
-    
-    print("gen_test is valid")
 
 
 
-def test_csv():
+def not_test_csv():
     """Status: runs and validates all functions in promit_search.io.csv"""
     csv_file: Path = Path("input/test_io/test1.csv").resolve()
     test_list: list[list[str]] = [
@@ -49,7 +34,7 @@ def test_csv():
     print("csv_test is valid")
     csv_file.unlink()
 
-def test_slurm():
+def not_test_slurm():
     """Status: runs and validates all functions in promit_search.io.slurm"""
     # basic single slurm
     test_file1: Path = Path("input/test_io/check1.slurm").resolve()

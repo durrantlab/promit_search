@@ -34,7 +34,7 @@ report.xml
 FapC_VS/
 
 # testing outputs
-tests/output/**
+tests/*/output/*
 !*.gitkeep
 
 # package version file
