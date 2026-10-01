@@ -92,8 +92,12 @@ def _compare(val1, val2, path: str, tol: float, diffs: list[str], valid_keys: li
         diffs: running list of differences, added to in place
     """
     if isinstance(val1, dict) and isinstance(val2, dict):
-        keys1 = set(val1).union(valid_keys)
-        keys2 = set(val2).union(valid_keys)
+        if len(valid_keys) > 0:
+            keys1 = set(val1).union(valid_keys)
+            keys2 = set(val2).union(valid_keys)
+        else:
+            keys1 = set(val1)
+            keys = set(val2)
         for key in sorted(keys1 - keys2):
             diffs.append(f"{path}.{key}: only in first file")
         for key in sorted(keys2 - keys1):
