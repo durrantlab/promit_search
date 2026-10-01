@@ -56,7 +56,7 @@ def main(
     gen.file_verify(sdf_path)
     sdf.validate(sdf_path)
     gen.file_exist_warn(out_path, "PHARMIT OUTPUT FILE ALREADY EXISTS. OVERWRITING")
-    gen.dir_verify(out_path)
+    gen.dir_verify(out_path.parent)
 
     # read in the ligand structure
     ligand_text = sdf_path.read_text()
