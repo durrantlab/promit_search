@@ -29,7 +29,5 @@ def dir_verify(dir_path: Path, create: bool = False) -> bool:
             dir_create(dir_path)
             return True
         else:
-            message = f"{dir_path} directory does not exist"
-            logger.error(message)
-            raise FileNotFoundError(message)
+            raise FileNotFoundError("{} directory does not exist".format(dir_path))
 

@@ -40,8 +40,6 @@ def find_files_rec(dir: Path, valid_types: list[str] = [],
 
     # raise error if invalid file
     if empty_error and len(files) == 0:
-        mess = f"No files with valid ending file found in {dir}"
-        logger.error(mess)
-        raise Exception(mess)
+        raise Exception("No files with valid ending file found in {}".format(dir))
     
     return files

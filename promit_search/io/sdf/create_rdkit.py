@@ -36,13 +36,9 @@ def create_rdkit(sdf_file: Path) -> Chem.SDMolSupplier:
     )
     # check through
     if len(supplier) == 0:
-        mess = f"SDF file is empty {sdf_file}"
-        logger.error(mess)
-        raise Exception(mess)
+        raise Exception("SDF file is empty {}".format(sdf_file))
     for mol in supplier:
         if mol == None:
-            mess = f"SDF file has invalid molecule {sdf_file}"
-            logger.error(mess)
-            raise Exception(mess)
+            raise Exception("SDF file has invalid molecule {}".format(sdf_file))
 
     return supplier

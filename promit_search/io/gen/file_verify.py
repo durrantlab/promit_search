@@ -17,8 +17,6 @@ def file_verify(file_path: Path) -> bool:
         FileNotFoundError: if file does not exist
     """
     if not file_path.is_file():
-        mess = f"File does not exist {file_path}"
-        logger.error(mess)
-        raise FileNotFoundError(mess)
+        raise FileNotFoundError("File does not exist {}".format(file_path))
     else:
         return True

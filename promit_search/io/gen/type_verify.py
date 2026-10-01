@@ -22,8 +22,6 @@ def type_verify(file: Path, valid_types: list[str]) -> str:
     """
     file_type: str | None = get_type(file)
     if file_type == None or not file_type in [item.lower().removeprefix(".") for item in valid_types]:
-        mess = f"Type of file is invalid {file}"
-        logger.error(mess)
-        raise Exception(mess)
+        raise Exception("Type of file is invalid {}".format(file))
     else:
         return file_type

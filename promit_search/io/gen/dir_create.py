@@ -23,7 +23,5 @@ def dir_create(dir_path: Path) -> bool:
             logger.info(f"Creating directory at {dir_path}")
             dir_path.mkdir(parents=True, exist_ok=True)
     except: 
-        mess = f"Could not create directory {dir_path}"
-        logger.error(mess)
-        raise Exception(mess)
+        raise Exception("Could not create directory {}".format(dir_path))
     return if_dir

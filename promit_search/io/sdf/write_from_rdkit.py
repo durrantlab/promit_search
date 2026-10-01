@@ -39,6 +39,4 @@ def write_from_rdkit(mols: Chem.SDMolSupplier | Chem.Mol, sdf_file: Path):
             else:
                 writer.write(mols)
     except:
-        mess = f"Failed to write rdkit to {sdf_file}"
-        logger.error(mess)
-        raise Exception(mess)
+        raise Exception("Failed to write rdkit to {}".format(sdf_file))
