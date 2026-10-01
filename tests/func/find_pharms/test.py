@@ -6,6 +6,7 @@ import os
 import shutil
 
 from promit_search.func.find_pharms import single_file
+from promit_search.io import sdf
 
 LOCAL_DIR = Path(os.path.dirname(__file__))
 
@@ -32,8 +33,8 @@ def test_find_pharms_single_slurm1():
     single_file(caffeine_sdf,op_dir, create_directories=True, pharmit_run="slurm")
     assert((op_dir / "make_pharms.slurm").is_file())
     assert((op_dir / "caff_mol.sdf").is_file())
-    assert((op_dir / "caff_mol.sdf").read_text() == caffeine_sdf.read_text())
-    
+    assert(sdf.validate((op_dir / "caff_mol.sdf")) == None)
+
 
 def test_find_pharms_single_web():
     """Tests that web functionality is complete"""
@@ -58,4 +59,5 @@ def _local_web_test1(op_dir, type):
         shutil.rmtree(op_dir)
     single_file(caffeine_sdf,op_dir, create_directories=True,  pharmit_run=type)
     assert((op_dir / "caff_mol.sdf").is_file())
+    assert(sdf.validate((op_dir / "caff_mol.sdf")) == None)
     assert((op_dir / "caff_mol.json").is_file())
