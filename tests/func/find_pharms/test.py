@@ -36,8 +36,9 @@ def test_find_pharms_single_slurm():
 
 
 
-def test_find_pharms_single_slurm(caffeine_sdf):
-    """Tests that slurm functionality is complete"""
+def test_find_pharms_single_web():
+    """Tests that web functionality is complete"""
+    caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json")
     if op_dir.is_dir():
         shutil.rmtree(op_dir)
@@ -47,8 +48,9 @@ def test_find_pharms_single_slurm(caffeine_sdf):
 
 
 
-def test_find_pharms_single_slurm(caffeine_sdf):
-    """Tests that slurm functionality is complete"""
+def test_find_pharms_single_local():
+    """Tests that local functionality is complete"""
+    caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json")
     if op_dir.is_dir():
         shutil.rmtree(op_dir)
