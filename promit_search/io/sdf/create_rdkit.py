@@ -25,9 +25,6 @@ def create_rdkit(sdf_file: Path) -> Chem.SDMolSupplier:
     
     Raises:
         Exception: if sdf is invalid somehow
-    
-    Warns:
-        Warning: if the SDF file already exists
     """
     # validate SDF and get rdkit molecule(s)
     logger.info(f"Reading in {sdf_file}")

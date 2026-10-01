@@ -16,7 +16,7 @@ from promit_search.io import gen
 
 def write_from_rdkit(mols: Chem.SDMolSupplier | Chem.Mol, sdf_file: Path):
     """From the molecule supplier, write out all the rdkit
-    molecules to an sdf
+    molecules to an sdf. Directory must exist
 
     Args:
         mols (Chem.SDMolSupplier): list of molecules to write

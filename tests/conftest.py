@@ -13,3 +13,11 @@ def turn_on_logging():
 @pytest.fixture
 def caffeine_sdf():
     return DIR_SCRIPT / "input" / "caffeine.sdf"
+
+@pytest.fixture
+def empty_sdf():
+    return DIR_SCRIPT / "input" / "empty.sdf"
+
+@pytest.fixture
+def invalid_sdf():
+    return DIR_SCRIPT / "input" / "invalid.sdf"
