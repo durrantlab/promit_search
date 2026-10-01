@@ -36,7 +36,7 @@ def test_find_pharms_single_slurm1():
     assert((op_dir / "caff_mol.sdf").is_file())
     assert(sdf.validate((op_dir / "caff_mol.sdf")) != None)
     assert(Chem.MolToSmiles(sdf.validate((op_dir / "caff_mol.sdf"))[0])
-            == Chem.MolToSmiles(sdf.validate(caffeine_sdf)))
+            == Chem.MolToSmiles(sdf.validate(caffeine_sdf)[0]))
 
 def test_find_pharms_sigle_slurm2(multi_sdf):
     """Tests that slurm functionality is complete for sdfs with 2+ molecule"""
@@ -80,5 +80,5 @@ def _local_web_test1(op_dir, type):
     assert((op_dir / "caff_mol.sdf").is_file())
     assert(sdf.validate((op_dir / "caff_mol.sdf")) != None)
     assert(Chem.MolToSmiles(sdf.validate((op_dir / "caff_mol.sdf"))[0]) 
-            == Chem.MolToSmiles(sdf.validate(caffeine_sdf)))
+            == Chem.MolToSmiles(sdf.validate(caffeine_sdf)[0]))
     assert((op_dir / "caff_mol.json").is_file())
