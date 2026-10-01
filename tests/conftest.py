@@ -15,6 +15,11 @@ def caffeine_sdf():
     return DIR_SCRIPT / "input" / "caffeine.sdf"
 
 @pytest.fixture
+def multi_sdf():
+    return DIR_SCRIPT / "input" / "multi.sdf"
+
+
+@pytest.fixture
 def empty_sdf():
     return DIR_SCRIPT / "input" / "empty.sdf"
 
