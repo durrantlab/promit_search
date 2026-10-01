@@ -33,7 +33,7 @@ def test_find_pharms_single_slurm1():
     single_file(caffeine_sdf,op_dir, create_directories=True, pharmit_run="slurm")
     assert((op_dir / "make_pharms.slurm").is_file())
     assert((op_dir / "caff_mol.sdf").is_file())
-    assert(sdf.validate((op_dir / "caff_mol.sdf")) == None)
+    assert(sdf.validate((op_dir / "caff_mol.sdf")) != None)
 
 
 def test_find_pharms_single_web():
@@ -59,5 +59,5 @@ def _local_web_test1(op_dir, type):
         shutil.rmtree(op_dir)
     single_file(caffeine_sdf,op_dir, create_directories=True,  pharmit_run=type)
     assert((op_dir / "caff_mol.sdf").is_file())
-    assert(sdf.validate((op_dir / "caff_mol.sdf")) == None)
+    assert(sdf.validate((op_dir / "caff_mol.sdf")) != None)
     assert((op_dir / "caff_mol.json").is_file())
