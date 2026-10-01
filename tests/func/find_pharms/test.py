@@ -55,17 +55,26 @@ def test_find_pharms_sigle_slurm2(multi_sdf):
 
 
 
-def test_find_pharms_single_web():
+def test_find_pharms_single_web(multi_sdf):
     """Tests that web functionality is complete"""
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "web").resolve()
     _local_web_test1(op_dir, "web")
+    
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json2" / "web").resolve()
+    _local_web_test2(multi_sdf, op_dir, "web")
 
-def test_find_pharms_single_local(json_compare):
+def test_find_pharms_single_local(json_compare, multi_sdf):
     """Tests that local functionality is complete"""
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "local").resolve()
     _local_web_test1(op_dir, "local")
     assert(json_compare((op_dir / "caff_mol.json"), (op_dir / ".." / "web" / "caff_mol.json"), 
                         0.1, ["points","name","radius","x","y","z"]))
+    
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json2" / "local").resolve()
+    _local_web_test2(multi_sdf, op_dir, "local")
+    for num in range(1,5):
+        assert(json_compare((op_dir / f"mole{num}.json"), (op_dir / ".." / "web" / f"mole{num}.json"), 
+                            0.1, ["points","name","radius","x","y","z"]))
 
 
 
@@ -82,3 +91,17 @@ def _local_web_test1(op_dir, type):
     assert(Chem.MolToSmiles(sdf.validate((op_dir / "caff_mol.sdf"))[0]) 
             == Chem.MolToSmiles(sdf.validate(caffeine_sdf)[0]))
     assert((op_dir / "caff_mol.json").is_file())
+
+def _local_web_test2(multi_sdf, op_dir, type):
+    """Tests that slurm functionality is complete for sdfs with 2+ molecule"""
+    if op_dir.is_dir():
+        shutil.rmtree(op_dir)
+    single_file(multi_sdf,op_dir, create_directories=True, pharmit_run=type)
+    
+    for num in range(1,5):
+        assert((op_dir / f"mole{num}.sdf").is_file())
+        assert((op_dir / f"mole{num}.json").is_file())
+    assert(sdf.validate((op_dir / "mole4.sdf")) != None)
+    for ind, mol in enumerate(sdf.validate(multi_sdf)):
+        assert(Chem.MolToSmiles(sdf.validate((op_dir / f"mole{ind+1}.sdf"))[0]) 
+            == Chem.MolToSmiles(mol))
