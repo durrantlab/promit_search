@@ -50,7 +50,7 @@ def test_find_pharms_sigle_slurm2(multi_sdf):
     assert((op_dir / "mole4.sdf").is_file())
     assert(sdf.validate((op_dir / "mole4.sdf")) != None)
     for ind, mol in enumerate(sdf.validate(multi_sdf)):
-        assert(Chem.MolToSmiles(sdf.validate((op_dir / f"mole{ind}.sdf"))) 
+        assert(Chem.MolToSmiles(sdf.validate((op_dir / f"mole{ind+1}.sdf"))) 
             == Chem.MolToSmiles(mol))
 
 
