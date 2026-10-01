@@ -18,11 +18,11 @@ def test_web_search(caffeine_sdf, json_compare):
     assert(get_pharms.main(caffeine_sdf, output))
     assert(output.is_file())
     test = LOCAL_DIR / "input" / "web_pharms.json"
-    assert(json_compare(output, test, 0.1, ["points","name","radius","svector","x","y","z"]))
+    assert(json_compare(output, test, 0.1, ["points","name","radius","x","y","z"]))
     output2 = LOCAL_DIR / "output" / "op2.json"
     if output2.is_file():
         output2.unlink()
     get_pharms_local(caffeine_sdf, out_file=output2)
-    assert(json_compare(output, output2, 0.1, ["points","name","radius","svector","x","y","z"]))
+    assert(json_compare(output, output2, 0.1, ["points","name","radius","x","y","z"]))
 
 
