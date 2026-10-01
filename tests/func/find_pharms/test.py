@@ -23,7 +23,7 @@ def test_slurm(caffeine_sdf):
 # test that local and web are similar
 
 
-def test_find_pharms_single_slurm():
+def test_find_pharms_single_slurm1():
     """Tests that slurm functionality is complete"""
     caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "slurm").resolve()
@@ -31,26 +31,31 @@ def test_find_pharms_single_slurm():
         shutil.rmtree(op_dir)
     single_file(caffeine_sdf,op_dir, create_directories=True, pharmit_run="slurm")
     assert((op_dir / "make_pharms.slurm").is_file())
+    assert((op_dir / "caff_mol.sdf").is_file())
+    assert((op_dir / "caff_mol.sdf").read_text() == caffeine_sdf.read_text())
     
-
-
 
 def test_find_pharms_single_web():
     """Tests that web functionality is complete"""
-    caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "web").resolve()
-    if op_dir.is_dir():
-        shutil.rmtree(op_dir)
-    single_file(caffeine_sdf,op_dir, create_directories=True,  pharmit_run="web")
-    assert((op_dir / "caff_mol.sdf").is_file())
+    _local_web_test1(op_dir, "web")
 
-
-
-def test_find_pharms_single_local():
+def test_find_pharms_single_local(json_compare):
     """Tests that local functionality is complete"""
-    caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "local").resolve()
+    _local_web_test1(op_dir, "local")
+    assert(json_compare((op_dir / "caff_mol.json"), (op_dir / ".." / "web" / "caff_mol.json"), 
+                        0.1, ["points","name","radius","x","y","z"]))
+
+
+
+
+"""Local and web are nearly identical so have same tests"""
+def _local_web_test1(op_dir, type):
+    """tests that works with a sdf with a single molecule"""
+    caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
     if op_dir.is_dir():
         shutil.rmtree(op_dir)
-    single_file(caffeine_sdf,op_dir, create_directories=True,  pharmit_run="local")
+    single_file(caffeine_sdf,op_dir, create_directories=True,  pharmit_run=type)
     assert((op_dir / "caff_mol.sdf").is_file())
+    assert((op_dir / "caff_mol.json").is_file())
