@@ -26,7 +26,7 @@ def test_slurm(caffeine_sdf):
 
 
 def test_find_pharms_single_slurm1():
-    """Tests that slurm functionality is complete"""
+    """Tests that slurm functionality is complete for sdfs with 1 molecule"""
     caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "slurm").resolve()
     if op_dir.is_dir():
@@ -37,6 +37,22 @@ def test_find_pharms_single_slurm1():
     assert(sdf.validate((op_dir / "caff_mol.sdf")) != None)
     assert(Chem.MolToSmiles(sdf.validate((op_dir / "caff_mol.sdf"))) 
             == Chem.MolToSmiles(caffeine_sdf))
+
+def test_find_pharms_sigle_slurm2(multi_sdf):
+    """Tests that slurm functionality is complete for sdfs with 2+ molecule"""
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json2" / "slurm").resolve()
+    if op_dir.is_dir():
+        shutil.rmtree(op_dir)
+    single_file(multi_sdf,op_dir, create_directories=True, pharmit_run="slurm")
+    
+    assert((op_dir / "make_pharms.slurm").is_file())
+    assert((op_dir / "mole1.sdf").is_file())
+    assert((op_dir / "mole4.sdf").is_file())
+    assert(sdf.validate((op_dir / "mole4.sdf")) != None)
+    for ind, mol in enumerate(sdf.validate(multi_sdf)):
+        assert(Chem.MolToSmiles(sdf.validate((op_dir / f"mole{ind}.sdf"))) 
+            == Chem.MolToSmiles(mol))
+
 
 
 def test_find_pharms_single_web():

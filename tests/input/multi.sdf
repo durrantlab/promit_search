@@ -1,4 +1,4 @@
-MolPort-002-691-694 ChemDiv-8004-5951 MCULE-5205259236 PubChem-135419914
+mole1
 
 
  35 37  0  0  0  0  0  0  0  0999 V2000
@@ -112,7 +112,7 @@ COc1cc(/C=N/[N-]C(=O)/C(Cc2ccc(N(C)C)cc2)=N\C(=O)c2ccccc2)cc(I)c1[O-] (optimized
 0.4043129981
 
 $$$$
-MolPort-002-322-891 PubChem-135646955 ZINC04018602
+mole2
 
 
  38 40  0  0  0  0  0  0  0  0999 V2000
@@ -232,7 +232,7 @@ CN(C)c1ccc(/C=C(/NC(=O)c2ccccc2Cl)C(=O)[N-]/N=C/c2cc(Br)c(O)c(Br)c2[O-])cc1 (opt
 0.3152575195
 
 $$$$
-MolPort-051-599-481
+mole3
 
 
  39 43  0  0  0  0  0  0  0  0999 V2000
@@ -353,7 +353,7 @@ CS(=O)(=O)c1ccc(F)c(C(=O)N[C@H]2CCCC23C[NH+](C(=O)c2ccc(-c4cccc(Br)c4)cc2)C3)c1 
 0.0321705975
 
 $$$$
-MolPort-000-750-154 150408483 LN01788756 MCULE-7796539394 PubChem-4395927 ZINC000150408483
+mole4
 
 
  44 48  0  0  0  0  0  0  0  0999 V2000
