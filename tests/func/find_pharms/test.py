@@ -26,11 +26,10 @@ def test_slurm(caffeine_sdf):
 def test_find_pharms_single_slurm():
     """Tests that slurm functionality is complete"""
     caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
-    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json").resolve()
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "slurm").resolve()
     if op_dir.is_dir():
         shutil.rmtree(op_dir)
-    op_dir_slurm = op_dir / "slurm"
-    single_file(caffeine_sdf,op_dir_slurm, create_directories=True, pharmit_run="slurm")
+    single_file(caffeine_sdf,op_dir, create_directories=True, pharmit_run="slurm")
     assert((caffeine_sdf.parent / "make_pharms.slurm").is_file())
     
 
