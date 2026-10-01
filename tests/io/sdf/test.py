@@ -31,7 +31,7 @@ def test_create_rdkit(caffeine_sdf: Path):
 def test_create_rdkit2(multi_sdf: Path):
     # multi molecule file returns every record
     mols = sdf.create_rdkit(multi_sdf)
-    assert(len(mols) == 3)
+    assert(len(mols) == 4)
     assert(all(mol is not None for mol in mols))
 
 
@@ -57,7 +57,7 @@ def test_validate(caffeine_sdf: Path):
 def test_validate2(multi_sdf: Path):
     # all records parse
     mols = sdf.validate(multi_sdf)
-    assert(len(mols) == 3)
+    assert(len(mols) == 4)
     assert(all(mol is not None for mol in mols))
 
 
