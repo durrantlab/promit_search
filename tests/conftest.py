@@ -93,8 +93,8 @@ def _compare(val1, val2, path: str, tol: float, diffs: list[str], valid_keys: li
     """
     if isinstance(val1, dict) and isinstance(val2, dict):
         if len(valid_keys) > 0:
-            keys1 = set(val1).union(valid_keys)
-            keys2 = set(val2).union(valid_keys)
+            keys1 = set(val1).intersection(valid_keys)
+            keys2 = set(val2).intersection(valid_keys)
         else:
             keys1 = set(val1)
             keys = set(val2)
