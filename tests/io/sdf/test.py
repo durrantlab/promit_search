@@ -43,7 +43,7 @@ def test_create_rdkit3(invalid_sdf: Path):
 
 def test_create_rdkit4(empty_sdf: Path):
     # file with no records at all
-    with pytest.warns(Warning):
+    with pytest.raises(Warning):
         mols = sdf.create_rdkit(empty_sdf)
     assert(len(mols) == 0)
 
