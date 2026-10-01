@@ -30,7 +30,7 @@ def test_find_pharms_single_slurm():
     if op_dir.is_dir():
         shutil.rmtree(op_dir)
     single_file(caffeine_sdf,op_dir, create_directories=True, pharmit_run="slurm")
-    assert((caffeine_sdf.parent / "make_pharms.slurm").is_file())
+    assert((op_dir / "make_pharms.slurm").is_file())
     
 
 
