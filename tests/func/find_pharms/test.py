@@ -38,21 +38,19 @@ def test_find_pharms_single_slurm():
 def test_find_pharms_single_web():
     """Tests that web functionality is complete"""
     caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
-    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json")
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "web").resolve()
     if op_dir.is_dir():
         shutil.rmtree(op_dir)
-    op_dir_web = op_dir / "web"
-    single_file(caffeine_sdf,op_dir_web, create_directories=True,  pharmit_run="web")
-    assert((op_dir_web / "caff_mol.sdf").is_file())
+    single_file(caffeine_sdf,op_dir, create_directories=True,  pharmit_run="web")
+    assert((op_dir / "caff_mol.sdf").is_file())
 
 
 
 def test_find_pharms_single_local():
     """Tests that local functionality is complete"""
     caffeine_sdf = (LOCAL_DIR / "input" / "caffeine.sdf").resolve()
-    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json")
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "local").resolve()
     if op_dir.is_dir():
         shutil.rmtree(op_dir)
-    op_dir_local = op_dir / "local"
-    single_file(caffeine_sdf,op_dir_local, create_directories=True,  pharmit_run="local")
-    assert((op_dir_local / "caff_mol.sdf").is_file())
+    single_file(caffeine_sdf,op_dir, create_directories=True,  pharmit_run="local")
+    assert((op_dir / "caff_mol.sdf").is_file())
