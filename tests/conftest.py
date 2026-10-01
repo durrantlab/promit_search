@@ -106,7 +106,7 @@ def _compare(val1, val2, path: str, tol: float, diffs: list[str], valid_keys: li
         if len(val1) != len(val2):
             diffs.append(f"{path}: length {len(val1)} != {len(val2)}")
         for i in range(min(len(val1), len(val2))):
-            _compare(val1[i], val2[i], f"{path}[{i}]", tol, diffs)
+            _compare(val1[i], val2[i], f"{path}[{i}]", tol, diffs, valid_keys)
         return
  
     if _is_num(val1) and _is_num(val2):
