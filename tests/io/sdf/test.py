@@ -45,7 +45,6 @@ def test_create_rdkit4(empty_sdf: Path):
     # file with no records at all
     with pytest.raises(Exception):
         mols = sdf.create_rdkit(empty_sdf)
-    assert(len(mols) == 0)
 
 
 def test_validate(caffeine_sdf: Path):
