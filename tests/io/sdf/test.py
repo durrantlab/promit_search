@@ -1,10 +1,4 @@
 
-""" Status: working on it """
-
-import pytest
-from pathlib import Path
-
-from promit_search.io import sdf
 
 """ Status: working on it """
 
