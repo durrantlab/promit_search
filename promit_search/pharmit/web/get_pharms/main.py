@@ -10,6 +10,8 @@ SERVER = "https://pharmit.csb.pitt.edu/fcgi-bin/pharmitserv.fcgi"
 
 
 from .lib import *
+from promit_search.io import gen
+from promit_search.io import sdf
 
 class PharmitError(RuntimeError):
     pass
@@ -43,11 +45,18 @@ def main(
     Returns:
         Boolean if the server returned a pharmacophore with at least one point
     
+    Raises:
+        FileNotFound: if the input sdf does not exist
+        Exception: if the input SDF is invalid
+        FileNotFound: If the output directory does not exist
+    
     Warns:
         Warning: If pharmit output file already exists
     """
-    if out_path.is_file():
-        logger.warning("PHARMIT OUTPUT FILE ALREADY EXISTS. OVERWRITING")
+    gen.file_verify(sdf_path)
+    sdf.validate(sdf_path)
+    gen.file_exist_warn(out_path, "PHARMIT OUTPUT FILE ALREADY EXISTS. OVERWRITING")
+    gen.dir_verify(out_path)
 
     # read in the ligand structure
     ligand_text = sdf_path.read_text()
