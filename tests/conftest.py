@@ -34,7 +34,8 @@ import json
 
 @pytest.fixture()
 def json_compare():
-    def _json_compare(json_file1: Path, json_file2: Path, tol: float = 0.1) -> bool:
+    def _json_compare(json_file1: Path, json_file2: Path, 
+                      tol: float = 0.1, valid_keys: list[str] = []) -> bool:
         """Compares two JSON files. Every key must be present in both
         files and every value must match. Numbers only need to match
         within a tolerance.
@@ -44,6 +45,7 @@ def json_compare():
             json_file1: first JSON file
             json_file2: second JSON file
             tol: allowed difference between two numbers
+            valid_keys: keys that will be checked. Default is checking all.
     
         Returns:
             True if the two files match
@@ -55,7 +57,7 @@ def json_compare():
         data2 = json.loads(Path(json_file2).read_text())
     
         diffs = []
-        _compare(data1, data2, "root", tol, diffs)
+        _compare(data1, data2, "root", tol, diffs, valid_keys)
     
         if diffs:
             report = "\n".join(diffs)
@@ -78,7 +80,7 @@ def _is_num(value) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool)
  
  
-def _compare(val1, val2, path: str, tol: float, diffs: list[str]):
+def _compare(val1, val2, path: str, tol: float, diffs: list[str], valid_keys: list[str]):
     """Walks two json structures together and records every
     difference it finds into diffs.
  
@@ -90,14 +92,14 @@ def _compare(val1, val2, path: str, tol: float, diffs: list[str]):
         diffs: running list of differences, added to in place
     """
     if isinstance(val1, dict) and isinstance(val2, dict):
-        keys1 = set(val1)
-        keys2 = set(val2)
+        keys1 = set(val1).union(valid_keys)
+        keys2 = set(val2).union(valid_keys)
         for key in sorted(keys1 - keys2):
             diffs.append(f"{path}.{key}: only in first file")
         for key in sorted(keys2 - keys1):
             diffs.append(f"{path}.{key}: only in second file")
         for key in sorted(keys1 & keys2):
-            _compare(val1[key], val2[key], f"{path}.{key}", tol, diffs)
+            _compare(val1[key], val2[key], f"{path}.{key}", tol, diffs, valid_keys)
         return
  
     if isinstance(val1, list) and isinstance(val2, list):

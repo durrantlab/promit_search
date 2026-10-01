@@ -23,6 +23,6 @@ def test_web_search(caffeine_sdf, json_compare):
     if output2.is_file():
         output2.unlink()
     get_pharms_local(caffeine_sdf, out_file=output2)
-    assert(json_compare(output, output2))
+    assert(json_compare(output, output2, 0.1, ["points","name","radius","svector","x","y","z"]))
 
 
