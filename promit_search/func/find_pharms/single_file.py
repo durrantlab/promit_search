@@ -55,14 +55,16 @@ def single_file(molecule_file: str | Path, output_dir: str | Path,
 
     ## create pharmacophores
     # if doing via slurm job (default)
-    if pharmit_run == "slurm":
+    if pharmit_run == "slurm": # probably remove at some point lowk
         pharm_slurm(mols, output_dir)
     # if doing via website
-    if pharmit_run == "web":
+    elif pharmit_run == "web":
         pharm_web(mols, output_dir)
     # if doing via local install
-    if pharmit_run == "local":
+    elif pharmit_run == "local":
         pharm_local(mols, output_dir)
+    else:
+        raise Exception("Invalid pharmit_run argument")
 
 
 

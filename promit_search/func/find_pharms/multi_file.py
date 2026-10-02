@@ -28,8 +28,6 @@ def multi_file(molecule_dir: str, output_dir: str,
             directory is not present, will create full tree.
             Else will crash
         pharmit_run: how pharmit will be run. 
-            "slurm": creates batch job script in output
-                directory that submits Pharmit job
             "web": will use the website's API to get
                 pharmacophores
             "local": will use locally installed version
@@ -45,6 +43,9 @@ def multi_file(molecule_dir: str, output_dir: str,
     # check if output dir exists
     output_dir: Path = Path(output_dir).resolve()
     gen.dir_verify(output_dir, create_directories)
+    # no slurm
+    if pharmit_run == "slurm":
+        raise Exception("Invalid pharmit_run argument")
     # go through files and run
     for file in all_files:
         if flatten:
