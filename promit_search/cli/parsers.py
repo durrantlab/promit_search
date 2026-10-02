@@ -22,17 +22,3 @@ def create_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command")
     visualize_main.add_subparsers(subparsers)
     return parser
-
-
-def print_subcommand_help(
-    parser: argparse.ArgumentParser, args: argparse.Namespace
-) -> None:
-    """_summary_
-
-    Args:
-        parser (argparse.ArgumentParser): _description_
-        args (argparse.Namespace): _description_
-    """
-    if not args.command:
-        parser.print_help()
-        sys.exit(0)
