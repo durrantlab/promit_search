@@ -135,6 +135,11 @@ def test_find_pharms_multi_file_web1(multi_sdf_simple, multi_sdf_comp, json_comp
     # check multiple SDFs in different folder. No flatten
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "web").resolve()
     _local_web_multi_test3(multi_sdf_comp, op_dir, "web")
+    # compare some jsons in non-flattened
+    for num in range(1,5):
+        assert(json_compare((op_dir / "in" / f"mole{num}.json"), (op_dir / ".." / "local" / "in" / f"mole{num}.json"), 
+                            0.1, ["points","name","radius","x","y","z"]))
+
 
 
 
