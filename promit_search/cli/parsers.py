@@ -11,8 +11,8 @@ def create_parser() -> argparse.ArgumentParser:
         argparse.ArgumentParser: _description_
     """
     parser = argparse.ArgumentParser(
-        "psma1-vs",
-        description="PSMA1-VS: Tools for computational drug design targeting PSMA1 and related targets.",
+        "promit_search",
+        description="Promit Search: protein-ligand based interaction pharmacophore searching.",
     )
     parser.add_argument("-v", action="store_true", help="More log verbosity.")
     parser.add_argument("-vv", action="store_true", help="Even more log verbosity.")

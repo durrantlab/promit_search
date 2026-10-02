@@ -1,6 +1,6 @@
 from argparse import Namespace
 
-from psma1_vs import enable_logging
+from promit_search import enable_logging
 
 
 def setup_logging(args: Namespace):
