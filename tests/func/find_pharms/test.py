@@ -119,7 +119,7 @@ def test_find_pharms_multi_file_local1(multi_sdf_simple, multi_sdf_comp, json_co
     _local_web_multi_test1(multi_sdf_simple, op_dir, "local")
     # check multiple SDFs in different folder. Flatten
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "local").resolve()
-    _local_web_test2(multi_sdf_comp, op_dir, "local")
+    _local_web_multi_test2(multi_sdf_comp, op_dir, "local")
     # check multiple SDFs in different folder. No flatten
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "local").resolve()
     _local_web_multi_test3(multi_sdf_comp, op_dir, "local")
@@ -131,7 +131,7 @@ def test_find_pharms_multi_file_web1(multi_sdf_simple, multi_sdf_comp, json_comp
     _local_web_multi_test1(multi_sdf_simple, op_dir, "web")
     # check multiple SDFs in different folder. Flatten
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "web").resolve()
-    _local_web_test2(multi_sdf_comp, op_dir, "web")
+    _local_web_multi_test2(multi_sdf_comp, op_dir, "web")
     # check multiple SDFs in different folder. No flatten
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "web").resolve()
     _local_web_multi_test3(multi_sdf_comp, op_dir, "web")
