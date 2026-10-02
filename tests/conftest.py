@@ -31,6 +31,8 @@ def invalid_sdf():
 def multi_sdf_simple():
     return DIR_SCRIPT / "input" / "multi_sdf_simple"
 
+def multi_sdf_comp():
+    return DIR_SCRIPT / "input" / "multi_sdf_comp"
 
 
 # helper functions
