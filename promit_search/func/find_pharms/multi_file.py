@@ -51,7 +51,7 @@ def multi_file(molecule_dir: str, output_dir: str,
             file_op_dir: Path = output_dir
             single_file(file, file_op_dir, create_directories=True, pharmit_run=pharmit_run)
         else:
-            diff: Path = file.relative_to(output_dir)
+            diff: Path = file.relative_to(molecule_dir)
             file_op_dir = output_dir / diff.parent
             single_file(file, file_op_dir, create_directories=True, pharmit_run=pharmit_run)
 
