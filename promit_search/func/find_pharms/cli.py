@@ -17,7 +17,7 @@ def cli(args):
         raise Exception("Invalid output_path argument")
     if not isinstance(args.create_dir, bool):
         args.create_dir = False
-    if not isinstance(args["run_type"], str):
+    if not isinstance(args.run_type, str):
         args.run_type = "local"
     # determine if single or multifile
     try:
