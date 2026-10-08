@@ -10,7 +10,7 @@ from promit_search.io import gen
 from .lib import *
 
 def single_file(molecule_file: str | Path, output_dir: str | Path,
-    create_directories: bool = False, pharmit_run: str = "slurm"):
+    create_directories: bool = False, pharmit_run: str = "local"):
     """Takes in a file, reads in
     the molecule(s) and outputs pharmacophore JSON(s)
     that can be used with Pharmit.

@@ -20,7 +20,7 @@ def find_pharms(subparse_group: argparse._SubParsersAction) -> None:
     subparser.add_argument("-o", "--output_path", help=help)
     help = "if the output file's directory is not present, will create full tree. \
             Else will crash"
-    subparser.add_argument("-c", "--create_dir", help=help)
+    subparser.add_argument("-c", "--create_dir", help=help, action="store_true")
     help = """how pharmit will be run.
             "slurm": creates batch job script in output
             directory that submits Pharmit job.
