@@ -24,7 +24,7 @@ def main():
             print("upper")
             print_help(parser, args)
             logger.error(e)
-            raise SystemExit(1)
+            raise e
     # if not present, somethign wrong with input. Give help
     else:
         print_help(parser, args)
