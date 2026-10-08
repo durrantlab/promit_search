@@ -1,14 +1,14 @@
 import argparse
 import sys
 
-from psma1_vs.cli.visualize import main as visualize_main
+from .subparse.add_subparsers import add_subparsers
 
 
 def create_parser() -> argparse.ArgumentParser:
     """Creates the parser. Sets up general arguments, and adds in the subparsers
 
     Returns:
-        argparse.ArgumentParser: _description_
+        argparse.ArgumentParser: the arguments + subparsers added in
     """
     parser = argparse.ArgumentParser(
         "psma1-vs",
@@ -19,20 +19,6 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument("--logfile", help="Specify a file to write logs to.")
     parser.add_argument("--config", help="Path to YAML configuration file.")
 
-    subparsers = parser.add_subparsers(dest="command")
-    visualize_main.add_subparsers(subparsers)
+    subparse_group = parser.add_subparsers(dest="command")
+    add_subparsers(subparse_group)
     return parser
-
-
-def print_subcommand_help(
-    parser: argparse.ArgumentParser, args: argparse.Namespace
-) -> None:
-    """_summary_
-
-    Args:
-        parser (argparse.ArgumentParser): _description_
-        args (argparse.Namespace): _description_
-    """
-    if not args.command:
-        parser.print_help()
-        sys.exit(0)

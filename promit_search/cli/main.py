@@ -1,13 +1,17 @@
 from loguru import logger
 
-from .logging import *
-from .parsers import *
+from .create_parser import create_parser
+from .setup_logging import setup_logging
+from .print_subcommand_help import print_subcommand_help
 
 
 def main():
     """The main function that powers the promit_search command-line interface."""
+    # setup the parser
     parser = create_parser()
+    # get result from parser
     args = parser.parse_args()
+    # run commands based on result
     print_subcommand_help(parser, args)
     setup_logging(args)
     logger.info("promit_search by the Durrant Lab <durrantj@pitt.edu>")
