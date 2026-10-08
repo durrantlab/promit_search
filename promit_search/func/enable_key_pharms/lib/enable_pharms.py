@@ -2,7 +2,9 @@ from pathlib import Path
 import prolif as plf
 
 from promit_search.io import gen
+from promit_search.io import json
 from .find_interactions import find_interactions
+from .check_pharms import main
 
 def enable_pharms(sdf_file: Path, json_file: Path, protein_mol: plf.Molecule, 
                   prolif_settings: dict, op_path: Path):
@@ -24,4 +26,7 @@ def enable_pharms(sdf_file: Path, json_file: Path, protein_mol: plf.Molecule,
     gen.file_exist_warn(op_path)
     # find all interactions between molecule and protein
     inter_dict: dict[str, list[int]] = find_interactions(sdf_file, protein_mol, prolif_settings)
-    
+    # check which pharamcophores are doing things
+    new_pharms = main.main(sdf_file, inter_dict, json_file)
+    # write out the pharmacophores that are doing thigs
+    json.write(new_pharms, op_path)

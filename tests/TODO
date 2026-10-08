@@ -1,4 +1,3 @@
-io.json.validate
-func.enable_key_pharms.lib.match_sdf_json
-func.enable_key_pharms.lib.get_op_path
-func.enable_key_pharms.lib.setup_prolif_setts
+func.enable_key_pharms.lib.*
+io.json.*
+func.enable_key_pharms.main
