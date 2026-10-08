@@ -21,12 +21,14 @@ def main():
         try:
             args.func(args)
         except Exception as e:
+            print("upper")
             print_help(parser, args)
             logger.error(e)
             raise SystemExit(1)
     # if not present, somethign wrong with input. Give help
     else:
         print_help(parser, args)
+        print("lower")
 
 
 if __name__ == "__main__":
