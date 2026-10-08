@@ -1,4 +1,6 @@
 
+from pathlib import Path
+
 from .single_file import single_file
 from .multi_file import multi_file
 
@@ -21,7 +23,7 @@ def cli(args):
         args.run_type = "local"
     # determine if single or multifile
     try:
-        gen.dir_verify(args.sdf_path, False)
+        gen.dir_verify(Path(args.sdf_path), False)
         func = multi_file
     except FileNotFoundError:
         func = single_file 
