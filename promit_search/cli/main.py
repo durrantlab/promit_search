@@ -16,12 +16,15 @@ def main():
     setup_logging(args)
     logger.info("promit_search by the Durrant Lab <durrantj@pitt.edu>")
 
+    # if the func 'method' is present for this subparser
+    # will try to run it
     if hasattr(args, "func"):
         try:
             args.func(args)
         except Exception as e:
             logger.error(e)
             raise SystemExit(1)
+    # if not present, somethign wrong with input. Give help
     else:
         if args.command:
             parser.parse_args([args.command, "--help"])

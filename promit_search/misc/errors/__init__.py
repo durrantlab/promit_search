@@ -1,0 +1,1 @@
+"""Holds all custom errors used throughout the package"""

@@ -27,6 +27,13 @@ def empty_sdf():
 def invalid_sdf():
     return DIR_SCRIPT / "input" / "invalid.sdf"
 
+@pytest.fixture
+def multi_sdf_simple():
+    return DIR_SCRIPT / "input" / "multi_sdf_simple"
+
+@pytest.fixture
+def multi_sdf_comp():
+    return DIR_SCRIPT / "input" / "multi_sdf_comp"
 
 
 # helper functions

@@ -8,7 +8,8 @@ from promit_search.io import gen
 from .single_file import single_file
 
 def multi_file(molecule_dir: str, output_dir: str,
-    create_directories: bool = False, pharmit_run: str = "local"):
+    create_directories: bool = False, pharmit_run: str = "local",
+    flatten: bool = True):
     """Takes in a folder, reads in all
     files of a known type and outputs a pharmacophore JSON
     that can be used with Pharmit
@@ -27,12 +28,13 @@ def multi_file(molecule_dir: str, output_dir: str,
             directory is not present, will create full tree.
             Else will crash
         pharmit_run: how pharmit will be run. 
-            "slurm": creates batch job script in output
-                directory that submits Pharmit job
             "web": will use the website's API to get
                 pharmacophores
             "local": will use locally installed version
                 of pharmit
+        flatten: if all molecule SDFs and JSONs will be
+            put in output_dir, or keep old
+            directory structure
     """
 
     # find all the files and check if dir is valid
@@ -41,7 +43,16 @@ def multi_file(molecule_dir: str, output_dir: str,
     # check if output dir exists
     output_dir: Path = Path(output_dir).resolve()
     gen.dir_verify(output_dir, create_directories)
+    # no slurm
+    if pharmit_run == "slurm":
+        raise Exception("Invalid pharmit_run argument")
     # go through files and run
     for file in all_files:
-        file_op_dir: Path = output_dir / file.name 
-        single_file(file, file_op_dir, create_directories=True, pharmit_run=pharmit_run)
+        if flatten:
+            file_op_dir: Path = output_dir
+            single_file(file, file_op_dir, create_directories=True, pharmit_run=pharmit_run)
+        else:
+            diff: Path = file.relative_to(molecule_dir)
+            file_op_dir = output_dir / diff.parent
+            single_file(file, file_op_dir, create_directories=True, pharmit_run=pharmit_run)
+

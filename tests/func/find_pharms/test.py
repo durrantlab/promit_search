@@ -7,6 +7,7 @@ import shutil
 from rdkit import Chem
 
 from promit_search.func.find_pharms import single_file
+from promit_search.func.find_pharms import multi_file
 from promit_search.io import sdf
 
 LOCAL_DIR = Path(os.path.dirname(__file__))
@@ -105,3 +106,80 @@ def _local_web_test2(multi_sdf, op_dir, type):
     for ind, mol in enumerate(sdf.validate(multi_sdf)):
         assert(Chem.MolToSmiles(sdf.validate((op_dir / f"mole{ind+1}.sdf"))[0]) 
             == Chem.MolToSmiles(mol))
+
+
+
+
+
+
+def test_find_pharms_multi_file_local1(multi_sdf_simple, multi_sdf_comp, json_compare):
+    """Tests that local functionality is complete"""
+    # check multiple SDFs all in same folder. Flatten
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi1" / "local").resolve()
+    _local_web_multi_test1(multi_sdf_simple, op_dir, "local")
+    # check multiple SDFs in different folder. Flatten
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "local").resolve()
+    _local_web_multi_test2(multi_sdf_comp, op_dir, "local")
+    # check multiple SDFs in different folder. No flatten
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "local").resolve()
+    _local_web_multi_test3(multi_sdf_comp, op_dir, "local")
+
+def test_find_pharms_multi_file_web1(multi_sdf_simple, multi_sdf_comp, json_compare):
+    """Tests that local functionality is complete"""
+    # check multiple SDFs all in same folder. Flatten
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi1" / "web").resolve()
+    _local_web_multi_test1(multi_sdf_simple, op_dir, "web")
+    # check multiple SDFs in different folder. Flatten
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "web").resolve()
+    _local_web_multi_test2(multi_sdf_comp, op_dir, "web")
+    # check multiple SDFs in different folder. No flatten
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "web").resolve()
+    _local_web_multi_test3(multi_sdf_comp, op_dir, "web")
+    # compare some jsons in non-flattened
+    for num in range(1,5):
+        assert(json_compare((op_dir / "in" / f"mole{num}.json"), (op_dir / ".." / "local" / "in" / f"mole{num}.json"), 
+                            0.1, ["points","name","radius","x","y","z"]))
+
+
+
+
+def _local_web_multi_test1(multi_sdf_simple, op_dir, type):
+    """tests that works with a sdf with a single molecule"""
+    if op_dir.is_dir():
+        shutil.rmtree(op_dir)
+    multi_file(multi_sdf_simple,op_dir, create_directories=True,  pharmit_run=type, flatten=True)
+    for num in range(1,15):
+        assert((op_dir / f"mole{num}.json").is_file())
+        assert((op_dir / f"mole{num}.sdf").is_file())
+        if num >= 5:
+            assert(Chem.MolToSmiles(sdf.validate((op_dir / f"mole{num}.sdf"))[0]) 
+                == Chem.MolToSmiles(sdf.validate(multi_sdf_simple / "multi2.sdf")[num-5]))
+
+def _local_web_multi_test2(multi_sdf_comp, op_dir, type):
+    """tests that works with a sdf with a single molecule"""
+    if op_dir.is_dir():
+        shutil.rmtree(op_dir)
+    multi_file(multi_sdf_comp,op_dir, create_directories=True,  pharmit_run=type, flatten=True)
+    for num in range(1,15):
+        assert((op_dir / f"mole{num}.json").is_file())
+        assert((op_dir / f"mole{num}.sdf").is_file())
+        if num < 5:
+            assert(Chem.MolToSmiles(sdf.validate((op_dir / f"mole{num}.sdf"))[0]) 
+                == Chem.MolToSmiles(sdf.validate(multi_sdf_comp / "in" / "multi1.sdf")[num-1]))
+
+def _local_web_multi_test3(multi_sdf_comp, op_dir, type):
+    """tests that works with a sdf with a single molecule"""
+    if op_dir.is_dir():
+        shutil.rmtree(op_dir)
+    multi_file(multi_sdf_comp,op_dir, create_directories=True,  pharmit_run=type, flatten=False)
+    # check in
+    for num in range(1,5):
+        assert((op_dir / "in" / f"mole{num}.json").is_file())
+        assert((op_dir / "in" / f"mole{num}.sdf").is_file())
+        assert(Chem.MolToSmiles(sdf.validate((op_dir / "in" / f"mole{num}.sdf"))[0]) 
+            == Chem.MolToSmiles(sdf.validate(multi_sdf_comp / "in" / "multi1.sdf")[num-1]))
+    for num in range(5,15):
+        assert((op_dir / f"mole{num}.json").is_file())
+        assert((op_dir / f"mole{num}.sdf").is_file())
+        assert(Chem.MolToSmiles(sdf.validate((op_dir /  f"mole{num}.sdf"))[0]) 
+            == Chem.MolToSmiles(sdf.validate(multi_sdf_comp / "multi2.sdf")[num-5]))
