@@ -2,7 +2,7 @@ from loguru import logger
 
 from .create_parser import create_parser
 from .setup_logging import setup_logging
-from .print_subcommand_help import print_help
+from .print_help import print_help
 
 
 def main():
@@ -21,10 +21,8 @@ def main():
         try:
             args.func(args)
         except Exception as e:
-            print("upper")
-            print_help(parser, args)
             logger.error(e)
-            raise e
+            print_help(parser, args)
     # if not present, somethign wrong with input. Give help
     else:
         print_help(parser, args)
