@@ -12,7 +12,7 @@ def find_pharms(subparse_group: argparse._SubParsersAction) -> None:
     """
     help: str = "Will take in molecule file(s) and return pharmacophore structures for them"
     subparser = subparse_group.add_parser("find_pharms",help=help)
-    subparser.defaults(func=cli)
+    subparser.set_defaults(func=cli)
     help = "file path that holds molecule(s)"
     subparser.add_argument("-i", "--sdf_path", help=help)
     help = "dir path that holds output. If file already present, will replace file. \
