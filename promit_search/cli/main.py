@@ -2,7 +2,7 @@ from loguru import logger
 
 from .create_parser import create_parser
 from .setup_logging import setup_logging
-from .print_subcommand_help import print_subcommand_help
+from .print_subcommand_help import print_help
 
 
 def main():
@@ -12,7 +12,6 @@ def main():
     # get result from parser
     args = parser.parse_args()
     # run commands based on result
-    print_subcommand_help(parser, args)
     setup_logging(args)
     logger.info("promit_search by the Durrant Lab <durrantj@pitt.edu>")
 
@@ -22,14 +21,12 @@ def main():
         try:
             args.func(args)
         except Exception as e:
+            print_help(parser, args)
             logger.error(e)
             raise SystemExit(1)
     # if not present, somethign wrong with input. Give help
     else:
-        if args.command:
-            parser.parse_args([args.command, "--help"])
-        else:
-            parser.print_help()
+        print_help(parser, args)
 
 
 if __name__ == "__main__":
