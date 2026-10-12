@@ -15,13 +15,14 @@ def find_interactions(sdf_file: Path, protein_mol: plf.Molecule, prolif_settings
         dictionary that matches each interaction type to the atoms involved in that interaction
     """
 
-    pose_iterable = plf.sdf_supplier(str(sdf_file))
+    pose_iterable = plf.sdf_supplier(str(sdf_file)) # change here to be just 1 SDF molecule
     fp = plf.Fingerprint(**prolif_settings)
-    fp.run_from_iterable(pose_iterable, protein_mol)
+    fp.run_from_iterable(pose_iterable, protein_mol) # change here to be just 1 SDF molecule
 
     lig_inter_list: dict[str, list[int]] = {}
     """D1: each interaction D2: list of atoms interacting"""
-    for mol_indx in range(len(pose_iterable)):  # go through every molecule
+    for mol_indx in range(len(pose_iterable)):  # go through every molecule. Just do index 1
+                                                # should check that the sdf only has 1 in main
         for (lig_res, prot_res), interactions in fp.ifp[
             mol_indx
         ].items():  # go through every interaction for this one

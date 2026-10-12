@@ -30,7 +30,6 @@ def main(sdf_path: Path, inter_dict: dict[str, list[int]],
     supplier = Chem.SDMolSupplier(
         str(sdf_path), sanitize=True, removeHs=False, strictParsing=True
     )
-    new_pharm: dict = {}
     valid_pharms: list[bool] = get_valid_pharms(
         pharms, supplier[0], inter_dict
     )

@@ -32,6 +32,7 @@ report.xml
 
 # old FapC-VS codebase
 FapC_VS/
+*file.txt
 
 # testing outputs
 tests/*/output/*

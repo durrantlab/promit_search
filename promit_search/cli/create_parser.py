@@ -17,7 +17,6 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument("-v", action="store_true", help="More log verbosity.")
     parser.add_argument("-vv", action="store_true", help="Even more log verbosity.")
     parser.add_argument("--logfile", help="Specify a file to write logs to.")
-    parser.add_argument("--config", help="Path to YAML configuration file.")
 
     subparse_group = parser.add_subparsers(dest="command")
     add_subparsers(subparse_group)

@@ -2,16 +2,17 @@ import argparse
 import csv
 import json
 import sys
+import os
 import time
 from pathlib import Path
 import requests
 import logging
 
-SERVER = "https://pharmit.csb.pitt.edu/fcgi-bin/pharmitserv.fcgi"
-
 class PharmitError(RuntimeError):
     pass
 
+# setup server link stuff
+SERVER: str = os.environ["PHARMIT_SERVER"]
 
 def main(
     query_path: Path,

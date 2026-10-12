@@ -2,12 +2,14 @@
 """ main function that returns the pharmacophores """
 
 import json
+import os
 from pathlib import Path
 import requests
 from loguru import logger
 
-SERVER = "https://pharmit.csb.pitt.edu/fcgi-bin/pharmitserv.fcgi"
-
+# setup server link stuff
+# setup os environmental var
+SERVER: str = os.environ["PHARMIT_SERVER"]
 
 from .lib import *
 from promit_search.io import gen
