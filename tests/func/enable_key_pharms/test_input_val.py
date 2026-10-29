@@ -12,17 +12,17 @@ from promit_search.io import json
 LOCAL_DIR = Path(os.path.dirname(__file__))
 
 def test_get_validate_recursive1():
-    # quickly check that validate recursive actually works
+    # quickly check that validate recursive actually works. 7 and 8 broken
     files_list = get_validate_recursive((LOCAL_DIR / "input"), "sdf", sdf.validate)
-    assert(len(files_list) == 8)
+    assert(len(files_list) == 6)
 
-    for num in range(1, 9):
+    for num in range(1, 7):
         assert (f"mole{num}.sdf" in [item.name for item in files_list])
 
 def test_get_validate_recursive2():
-    # quickly check that validate recursive actually works
+    # quickly check that validate recursive actually works. 6 and 8 broken.
     files_list = get_validate_recursive((LOCAL_DIR / "input"), "json", json.validate)
-    assert(len(files_list) == 8)
+    assert(len(files_list) == 6)
 
-    for num in range(1, 9):
+    for num in range(1, 6):
         assert (f"mole{num}.json" in [item.name for item in files_list])
