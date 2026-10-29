@@ -21,3 +21,6 @@ def test():
     result = find_interactions((INPUT_DIR / "mole5.sdf"), 
         protein_mol, prolif_settings)
     print(result)
+
+if __name__ == "__main__":
+    test()
