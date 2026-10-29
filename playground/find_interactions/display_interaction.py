@@ -22,8 +22,8 @@ def _atom_selection(obj: str, indices: list[int]) -> str:
     PyMOL's `rank` is the 0-based atom order in the loaded file, which matches
     RDKit/ProLIF indices when the SDF was read with removeHs=False.
     """
-    ranks = " or id ".join(f"rank {i}" for i in sorted(indices))
-    return f"{obj} and id ({ranks})"
+    ranks = " or ".join(f"id {i}" for i in sorted(indices))
+    return f"{obj} and ({ranks})"
 
 
 def write_interaction_pymol_script(
