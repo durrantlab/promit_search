@@ -18,6 +18,7 @@ from .lib.match_sdf_json import match_sdf_json
 from .lib.get_op_path import get_op_path
 from .lib.enable_pharms import enable_pharms
 from .lib.setup_prolif_setts import setup_prolif_setts
+from .lib.get_validate_recursive import get_validate_recursive
 
 def main(input_dir: str, protein_file: str, output_dir: str, prolif_settings: dict[str,str]={}, 
          flatten: bool = True, create_dir: bool = True) -> None:
@@ -48,27 +49,10 @@ def main(input_dir: str, protein_file: str, output_dir: str, prolif_settings: di
     prolif_settings = setup_prolif_setts(prolif_settings)
     # get all SDFs
     input_dir: Path = Path(input_dir).resolve()
-    gen.dir_verify(input_dir, False)
-    sdf_files: list[Path] = gen.find_files_rec(input_dir, ["sdf"])
-    temp_sdf: list[Path] = []
-    for sdf_file in sdf_files:
-        try:
-            sdf.validate(sdf_file)
-            temp_sdf.append(sdf_file)
-        except:
-            logger.warning("SDF molecule {} is invalid. Skipping.".format(sdf_file))
-    sdf_files = temp_sdf
+    sdf_files: list[Path] = get_validate_recursive(input_dir, "sdf", sdf.validate)
     # get all JSONs
-    json_files: list[Path] = gen.find_files_rec(input_dir, ["json"])
-    temp_json: list[Path] = []
-    for json_file in json_files:
-        valid_dict: dict = {"points":["x","y","z","enabled","name"]}
-        try:
-            json.validate(json_file, valid_dict)
-            temp_json.append(json_file)
-        except:
-            logger.warning("pharmacophore JSON {} is invalid. Skipping.".format(json_file))
-    json_files = temp_json
+    input_dir: Path = Path(input_dir).resolve()
+    json_files: list[Path] = get_validate_recursive(input_dir, "json", json.validate)
     # pair up JSONs and SDFs
     sdf_to_json: dict[Path, Path] = match_sdf_json(sdf_files, json_files)
     # for each pair, enable / disable pharmacophores following interaction profile
