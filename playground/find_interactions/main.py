@@ -11,7 +11,7 @@ from promit_search.func.enable_key_pharms.lib.setup_prolif_setts import setup_pr
 from promit_search.func.enable_key_pharms.lib.find_interactions import find_interactions
 
 LOCAL_DIR = Path(os.path.dirname(__file__))
-INPUT_DIR = (LOCAL_DIR / ".." / "tests" / "input").resolve()
+INPUT_DIR = (LOCAL_DIR / ".." /  ".." / "tests" / "input").resolve()
 PROT_FILE: Path = (INPUT_DIR / "prot.pdb").resolve()
 
 def test():
