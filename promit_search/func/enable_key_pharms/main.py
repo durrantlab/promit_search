@@ -53,7 +53,8 @@ def main(input_dir: str, protein_file: str, output_dir: str, prolif_settings: di
     # get all JSONs
     input_dir: Path = Path(input_dir).resolve()
     valid_dict: dict = {"points":["x","y","z","enabled","name"]}
-    json_files: list[Path] = get_validate_recursive(input_dir, "json", json.validate, {valid_dict})
+    json_files: list[Path] = get_validate_recursive(input_dir, "json", 
+                                json.validate, {"keys_dict": valid_dict})
     # pair up JSONs and SDFs
     sdf_to_json: dict[Path, Path] = match_sdf_json(sdf_files, json_files)
     # for each pair, enable / disable pharmacophores following interaction profile

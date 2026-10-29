@@ -23,5 +23,5 @@ def get_validate_recursive(input_dir: Path, file_type: str, validate, valid_kwar
             validate(file, **valid_kwarg)
             validate_files.append(file)
         except:
-            logger.warning("{} molecule {} is invalid. Skipping.".format(file_type, file))
+            logger.warning("{} file {} is invalid. Skipping.".format(file_type, file))
     return validate_files

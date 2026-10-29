@@ -18,7 +18,7 @@ def _keys_match(data: dict, template: dict) -> bool:
     return True
 
 
-def validate(json_file: Path, keys_dict: dict) -> bool:
+def validate(json_file: Path, keys_dict: dict = {}) -> bool:
     """Takes in a JSON file and validates it by checking
     keys in input dictionary match that in JSON
 
