@@ -35,6 +35,14 @@ def multi_sdf_simple():
 def multi_sdf_comp():
     return DIR_SCRIPT / "input" / "multi_sdf_comp"
 
+@pytest.fixture
+def protein_file():
+    return DIR_SCRIPT / "input" / "prot.pdb"
+
+@pytest.fixture
+def find_pharms_op():
+    return DIR_SCRIPT / "input" / "find_pharms_op"
+
 
 # helper functions
 import json
