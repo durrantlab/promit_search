@@ -3,7 +3,7 @@ from pathlib import Path
 from promit_search.io import gen
 from loguru import logger
 
-def get_validate_recursive(input_dir: Path, file_type: str, validate) -> list[Path]:
+def get_validate_recursive(input_dir: Path, file_type: str, validate, valid_kwarg = {}) -> list[Path]:
     """Takes in a directory to recursively search. Will then 
     validate each result and only return ones that pass
 
@@ -20,8 +20,8 @@ def get_validate_recursive(input_dir: Path, file_type: str, validate) -> list[Pa
     validate_files: list[Path] = []
     for file in files:
         try:
-            validate(file)
+            validate(file, **valid_kwarg)
             validate_files.append(file)
         except:
-            logger.warning("SDF molecule {} is invalid. Skipping.".format(file))
+            logger.warning("{} molecule {} is invalid. Skipping.".format(file_type, file))
     return validate_files
