@@ -36,6 +36,7 @@ FapC_VS/
 
 # testing outputs
 tests/*/output/*
+playground/*/output/*
 !*.gitkeep
 
 # package version file

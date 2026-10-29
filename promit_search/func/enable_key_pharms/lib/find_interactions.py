@@ -4,7 +4,9 @@ import prolif as plf
 def find_interactions(sdf_file: Path, protein_mol: plf.Molecule, prolif_settings: dict) -> dict[str, list[int]]:
     """Will find all interactions between the molecule and protein using prolif. Will return
     as a dictionary of all interactions, with the values being each atom involved in an interaction
-    of that type
+    of that type.
+
+    The index returned is that of PyMol / SDF, which starts at 1. Prolif's default is 0-start.
 
     Args:
         sdf_file: sdf that holds molecule being checked
@@ -32,7 +34,7 @@ def find_interactions(sdf_file: Path, protein_mol: plf.Molecule, prolif_settings
                 for md in metadata_list:
                     lig_atoms: tuple[int] = md["parent_indices"]["ligand"]
                     for lig_atom_ in lig_atoms:
-                        lig_atom = lig_atom_ + 1
+                        lig_atom = lig_atom_ + 1 # add 1 since pymol / sdf start indexing at 1
                         if not lig_atom in lig_inter_list[int_name]:
                             lig_inter_list[int_name].append(lig_atom)
 
