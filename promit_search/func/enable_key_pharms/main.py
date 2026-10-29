@@ -36,11 +36,12 @@ def main(input_dir: str, protein_file: str, output_dir: str, prolif_settings: di
         create_dir: if the output directory will be created if it does not
             exist
     """
-    # validate other inputs
+    # validate / setup protein
     protein_file: Path = Path(protein_file).resolve()
     gen.file_verify(protein_file)
     rdkit_prot = Chem.MolFromPDBFile(str(protein_file), removeHs=False)
     protein_mol = plf.Molecule(rdkit_prot)
+    # validate output dir
     output_dir: Path = Path(output_dir).resolve()
     gen.dir_verify(output_dir, create_dir)
     # set up prolif settings

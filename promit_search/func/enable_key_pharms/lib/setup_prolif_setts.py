@@ -36,5 +36,25 @@ def setup_prolif_setts(input_setts: dict) -> dict:
                 },
             }
     }
-    settings: dict = def_settings | input_setts
-    return settings
+    merged: dict = dict(def_settings)
+    merged: dict = dict_merge(merged, input_setts)
+    return merged
+
+
+def dict_merge(merged: dict, new: dict) -> dict:
+    """Will take in a dictionary, and add in / overwrite all
+    values from the new dictionary into it. Recursive
+
+    Args:
+        merged: the dictionary being added to
+        new: dictionary taking from
+
+    Returns:
+        dictionary with new added on top of merge
+    """
+    for key, value in new.items():
+        if isinstance(merged.get(key), dict) and isinstance(value, dict):
+            merged[key] = dict_merge(merged[key], value)
+        else:
+            merged[key] = value
+    return merged
