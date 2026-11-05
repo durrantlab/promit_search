@@ -11,6 +11,6 @@ def load(path: Path) -> dict:
     Returns:
         dictionary version of json
     """
-    with open("data.json") as f:
+    with open(path) as f:
         data = json.load(f)
     return data
