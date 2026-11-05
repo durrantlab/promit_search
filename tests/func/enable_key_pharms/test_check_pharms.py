@@ -87,7 +87,7 @@ def test_get_valid_pharms6(find_pharms_op, protein_file):
     supplier = Chem.SDMolSupplier(
         str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
     )
-    inter_dict = {"HBDonor":[16,17,18,19,20,21]}
+    inter_dict = {"PiStacking":[16,17,18,19,20,21]}
     result = get_valid_pharms(pharms, supplier[0], inter_dict)
     assert(result[1])
     assert(result.count(True) == 1)
