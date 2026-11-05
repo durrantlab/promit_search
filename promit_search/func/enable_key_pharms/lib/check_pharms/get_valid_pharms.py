@@ -32,24 +32,36 @@ def get_valid_pharms(
         pharm_loc = [pharm["x"], pharm["y"], pharm["z"]]
         pharm_type: str = pharm["name"]
         prolif_inter_type: str = PHARMACOPHORE_TO_PROLIF[pharm_type]
-
         # go through each atom interacting with that type
-        if_any_inside: bool = False
         if prolif_inter_type in inter_dict.keys():
-            for atom in inter_dict[prolif_inter_type]:
-                conf = mol.GetConformer()
-                atom_pos = list(conf.GetAtomPosition(int(atom) - 1))
-                # determine distance and if valid
-                dist: float = _eucl_dist(atom_pos, pharm_loc)
-                if_any_inside = _if_inside_pharm(dist, pharm_type)
-                if if_any_inside:
-                    break
-        if if_any_inside:
-            if_pharm.append(True)
-        else:
-            if_pharm.append(False)
-
+            if prolif_inter_type == "PiStacking":
+                if_pharm.append(_check_pi(inter_dict[prolif_inter_type], mol, pharm_loc, pharm_type))
+            else:
+                if_pharm.append(_check_other(inter_dict[prolif_inter_type], mol, pharm_loc, pharm_type))
     return if_pharm
+
+
+def _check_other(inter_dict: list[int], mol, pharm_loc: list[int], pharm_type: str) -> bool:
+    for atom in inter_dict:
+        conf = mol.GetConformer()
+        atom_pos = list(conf.GetAtomPosition(int(atom) - 1))
+        # determine distance and if valid
+        dist: float = _eucl_dist(atom_pos, pharm_loc)
+        if_any_inside = _if_inside_pharm(dist, pharm_type)
+        if if_any_inside:
+            return True
+    return False
+
+def _check_pi(inter_dict: list[int], mol, pharm_loc: list[int], pharm_type: str) -> bool:
+    count = 0
+    for atom in inter_dict:
+        conf = mol.GetConformer()
+        atom_pos = list(conf.GetAtomPosition(int(atom) - 1))
+        # determine distance and if valid
+        dist: float = _eucl_dist(atom_pos, pharm_loc)
+        if _if_inside_pharm(dist, pharm_type):
+            count = count + 1
+    return count > 4
 
 
 def _if_inside_pharm(dist: float, inter_type: str) -> bool:

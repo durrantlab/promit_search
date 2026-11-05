@@ -25,6 +25,7 @@ def test_get_valid_pharms1(find_pharms_op):
     result = get_valid_pharms(pharms, supplier[0], {})
     for bl in result:
         assert(not bl)
+    assert(len(result) == len(pharms["points"]))
 
 def test_get_valid_pharms2(find_pharms_op):
     # check it returns all true if there are every interaction found
@@ -37,6 +38,7 @@ def test_get_valid_pharms2(find_pharms_op):
     result = get_valid_pharms(pharms, supplier[0], inter_dict)
     for bl in result:
         assert(bl)
+    assert(len(result) == len(pharms["points"]))
 
 def test_get_valid_pharms3(find_pharms_op, protein_file):
     # real situation check. Make sure some on and off
