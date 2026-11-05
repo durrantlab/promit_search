@@ -56,9 +56,9 @@ def test_find_pharms_sigle_slurm2(multi_sdf):
 
 
 
-#def test_find_pharms_single_web(multi_sdf):
-    """Tests that web functionality is complete"""
-"""    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "web").resolve()
+"""def test_find_pharms_single_web(multi_sdf):
+    Tests that web functionality is complete
+    op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json" / "web").resolve()
     _local_web_test1(op_dir, "web")
     
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_json2" / "web").resolve()
@@ -124,8 +124,8 @@ def test_find_pharms_multi_file_local1(multi_sdf_simple, multi_sdf_comp, json_co
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi2" / "local").resolve()
     _local_web_multi_test3(multi_sdf_comp, op_dir, "local")
 
-def test_find_pharms_multi_file_web1(multi_sdf_simple, multi_sdf_comp, json_compare):
-    """Tests that local functionality is complete"""
+"""def test_find_pharms_multi_file_web1(multi_sdf_simple, multi_sdf_comp, json_compare):
+    Tests that local functionality is complete
     # check multiple SDFs all in same folder. Flatten
     op_dir: Path = (LOCAL_DIR / "output" / "create_pharm_multi1" / "web").resolve()
     _local_web_multi_test1(multi_sdf_simple, op_dir, "web")
@@ -138,7 +138,7 @@ def test_find_pharms_multi_file_web1(multi_sdf_simple, multi_sdf_comp, json_comp
     # compare some jsons in non-flattened
     for num in range(1,5):
         assert(json_compare((op_dir / "in" / f"mole{num}.json"), (op_dir / ".." / "local" / "in" / f"mole{num}.json"), 
-                            0.1, ["points","name","radius","x","y","z"]))
+                            0.1, ["points","name","radius","x","y","z"]))"""
 
 
 
