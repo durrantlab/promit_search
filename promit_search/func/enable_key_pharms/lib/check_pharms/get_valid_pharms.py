@@ -72,7 +72,7 @@ def _if_inside_pharm(dist: float, inter_type: str) -> bool:
         if dist < 2:
             return True
     if inter_type == "HydrogenDonor" or inter_type == "HydrogenAcceptor":
-        if dist < 2:
+        if dist < 0.3:
             return True
     if inter_type == "Cationic" or inter_type == "Anionic":
         if dist < 2:

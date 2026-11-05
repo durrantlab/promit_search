@@ -58,3 +58,14 @@ def test_get_valid_pharms3(find_pharms_op, protein_file):
     assert(result.count(True) > 3)
     assert(result.count(False) > 3)
     assert(len(result) == len(pharms["points"]))
+
+def test_get_valid_pharms4(find_pharms_op, protein_file):
+    # check that a H-bond acceptor pharmacophore is correctly enbled
+    pharms: dict = pms_json.load(find_pharms_op / "mole5.json")
+    supplier = Chem.SDMolSupplier(
+        str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
+    )
+    inter_dict = {"HBAcceptor":[23]}
+    result = get_valid_pharms(pharms, supplier[0], inter_dict)
+    assert(result[5])
+    assert(not result[6])
