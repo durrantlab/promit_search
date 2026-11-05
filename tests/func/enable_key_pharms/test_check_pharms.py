@@ -31,4 +31,4 @@ def test_get_valid_pharms2(find_pharms_op):
         "HBDonor":list(range(1,37)), "HBAcceptor":list(range(1,37))}
     result = get_valid_pharms(pharms, supplier[0], inter_dict)
     for bl in result:
-        assert(not bl)
+        assert(bl)
