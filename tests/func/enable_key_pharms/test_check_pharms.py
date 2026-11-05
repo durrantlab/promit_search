@@ -91,3 +91,36 @@ def test_get_valid_pharms6(find_pharms_op, protein_file):
     result = get_valid_pharms(pharms, supplier[0], inter_dict)
     assert(result[1])
     assert(result.count(True) == 1)
+
+def test_get_valid_pharms7(find_pharms_op, protein_file):
+    # check that a hydrophobic ring pharmacophore is correctly enbled
+    pharms: dict = pms_json.load(find_pharms_op / "mole5.json")
+    supplier = Chem.SDMolSupplier(
+        str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
+    )
+    inter_dict = {"Hydrophobic":[16,17,18,19,20,21]}
+    result = get_valid_pharms(pharms, supplier[0], inter_dict)
+    assert(result[11])
+    assert(result.count(True) == 1)
+
+def test_get_valid_pharms8(find_pharms_op, protein_file):
+    # check that a hydrophobic single pharmacophore is correctly enbled
+    pharms: dict = pms_json.load(find_pharms_op / "mole5.json")
+    supplier = Chem.SDMolSupplier(
+        str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
+    )
+    inter_dict = {"Hydrophobic":[14]}
+    result = get_valid_pharms(pharms, supplier[0], inter_dict)
+    assert(result[14])
+    assert(result.count(True) == 1)
+
+def test_get_valid_pharms8(find_pharms_op, protein_file):
+    # check that a hydrophobic single pharmacophore is correctly enbled
+    pharms: dict = pms_json.load(find_pharms_op / "mole5.json")
+    supplier = Chem.SDMolSupplier(
+        str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
+    )
+    inter_dict = {"Hydrophobic":[34,35]}
+    result = get_valid_pharms(pharms, supplier[0], inter_dict)
+    assert(result[15])
+    assert(result.count(True) == 1)
