@@ -29,8 +29,8 @@ def setup_prolif_setts(input_setts: dict) -> dict:
                 "Hydrophobic": {"distance": 5},
                 "HBDonor": {"distance": 4.0, "DHA_angle": (110, 180)},
                 "HBAcceptor": {"distance": 4.0, "DHA_angle": (110, 180)},
-                "Anionic": {"distance": 8, "angle": (0, 40)},
-                "Cationic": {"distance": 8, "angle": (0, 40)},
+                "Anionic": {"distance": 8},
+                "Cationic": {"distance": 8},
                 "PiStacking": {
                     "ftf_kwargs": {"distance": 8, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40)},
                     "etf_kwargs": {"distance": 8, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40), 
