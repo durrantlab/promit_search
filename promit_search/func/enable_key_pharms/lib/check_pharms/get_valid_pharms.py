@@ -36,6 +36,8 @@ def get_valid_pharms(
         if prolif_inter_type in inter_dict.keys():
             if prolif_inter_type == "PiStacking":
                 if_pharm.append(_check_pi(inter_dict[prolif_inter_type], mol, pharm_loc, pharm_type))
+            elif prolif_inter_type == "Hydrophobic":
+                if_pharm.append(_check_hp(inter_dict[prolif_inter_type], mol, pharm_loc))
             else:
                 if_pharm.append(_check_other(inter_dict[prolif_inter_type], mol, pharm_loc, pharm_type))
         else:
@@ -54,6 +56,24 @@ def _check_other(inter_dict: list[int], mol, pharm_loc: list[int], pharm_type: s
             return True
     return False
 
+def _check_hp(inter_dict: list[int], mol, pharm_loc: list[int]) -> bool:
+    trueness = 0
+    for atom in inter_dict:
+        conf = mol.GetConformer()
+        atom_pos = list(conf.GetAtomPosition(int(atom) - 1))
+        # determine distance and if valid
+        dist: float = _eucl_dist(atom_pos, pharm_loc)
+        if dist < 0.3:
+            return True
+        elif dist < 1:
+            trueness = trueness + 0.51
+        elif dist < 1.5:
+            trueness = trueness + 0.251
+    if trueness >= 1:
+        return True
+    return False
+
+
 def _check_pi(inter_dict: list[int], mol, pharm_loc: list[int], pharm_type: str) -> bool:
     count = 0
     for atom in inter_dict:
@@ -69,7 +89,7 @@ def _check_pi(inter_dict: list[int], mol, pharm_loc: list[int], pharm_type: str)
 def _if_inside_pharm(dist: float, inter_type: str) -> bool:
     # inter_type is the pharmit name
     if inter_type == "Hydrophobic" or inter_type == "Aromatic":
-        if dist < 2:
+        if dist < 1.5:
             return True
     if inter_type == "HydrogenDonor" or inter_type == "HydrogenAcceptor":
         if dist < 0.3:
