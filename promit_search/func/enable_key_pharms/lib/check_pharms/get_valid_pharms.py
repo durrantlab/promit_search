@@ -53,6 +53,7 @@ def get_valid_pharms(
 
 
 def _if_inside_pharm(dist: float, inter_type: str) -> bool:
+    # inter_type is the pharmit name
     if inter_type == "Hydrophobic" or inter_type == "Aromatic":
         if dist < 2:
             return True
