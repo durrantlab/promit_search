@@ -41,7 +41,7 @@ def get_valid_pharms(
                 atom_pos = list(conf.GetAtomPosition(int(atom) - 1))
                 # determine distance and if valid
                 dist: float = _eucl_dist(atom_pos, pharm_loc)
-                if_any_inside = _if_inside_pharm(dist, prolif_inter_type)
+                if_any_inside = _if_inside_pharm(dist, pharm_type)
                 if if_any_inside:
                     break
         if if_any_inside:
