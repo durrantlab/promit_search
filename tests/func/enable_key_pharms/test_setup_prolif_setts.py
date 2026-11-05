@@ -97,7 +97,7 @@ def test_setup_prolif_setts7():
     result = setup_prolif_setts({"new_sett": "value"})
     assert(result["new_sett"] == "value")
     assert(result["vicinity_cutoff"] == 10)
-    assert(len(result) == 4)
+    assert(len(result) == 5)
 
 
 def test_setup_prolif_setts8():

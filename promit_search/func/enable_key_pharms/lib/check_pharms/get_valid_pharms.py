@@ -35,14 +35,15 @@ def get_valid_pharms(
 
         # go through each atom interacting with that type
         if_any_inside: bool = False
-        for atom in inter_dict[prolif_inter_type]:
-            conf = mol.GetConformer()
-            atom_pos = list(conf.GetAtomPosition(int(atom) - 1))
-            # determine distance and if valid
-            dist: float = _eucl_dist(atom_pos, pharm_loc)
-            if_any_inside = _if_inside_pharm(dist, prolif_inter_type)
-            if if_any_inside:
-                break
+        if prolif_inter_type in inter_dict.keys():
+            for atom in inter_dict[prolif_inter_type]:
+                conf = mol.GetConformer()
+                atom_pos = list(conf.GetAtomPosition(int(atom) - 1))
+                # determine distance and if valid
+                dist: float = _eucl_dist(atom_pos, pharm_loc)
+                if_any_inside = _if_inside_pharm(dist, prolif_inter_type)
+                if if_any_inside:
+                    break
         if if_any_inside:
             if_pharm.append(True)
         else:
