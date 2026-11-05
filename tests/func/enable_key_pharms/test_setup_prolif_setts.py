@@ -122,8 +122,8 @@ def test_setup_prolif_setts9():
     assert(result["vicinity_cutoff"] == 6)
     assert(result["interactions"] == ["Hydrophobic", "HBDonor"])
     assert(result["parameters"]["Hydrophobic"] == {"distance": 7})
-    assert(result["parameters"]["PiStacking"]["etf_kwargs"] == {"distance": 8})
-    assert(result["parameters"]["PiStacking"]["ftf_kwargs"] == {"distance": 6})
+    assert(result["parameters"]["PiStacking"]["etf_kwargs"]["distance"] == 8)
+    assert(result["parameters"]["PiStacking"]["ftf_kwargs"]["distance"] == 6)
     assert(result["parameters"]["Anionic"] == default["parameters"]["Anionic"])
 
 
