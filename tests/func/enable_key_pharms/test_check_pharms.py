@@ -69,3 +69,25 @@ def test_get_valid_pharms4(find_pharms_op, protein_file):
     result = get_valid_pharms(pharms, supplier[0], inter_dict)
     assert(result[5])
     assert(not result[6])
+
+def test_get_valid_pharms5(find_pharms_op, protein_file):
+    # check that a H-bond donor pharmacophore is correctly enbled
+    pharms: dict = pms_json.load(find_pharms_op / "mole5.json")
+    supplier = Chem.SDMolSupplier(
+        str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
+    )
+    inter_dict = {"HBDonor":[3,4]}
+    result = get_valid_pharms(pharms, supplier[0], inter_dict)
+    assert(result[4])
+    assert(result.count(True) == 1)
+
+def test_get_valid_pharms6(find_pharms_op, protein_file):
+    # check that a pipi pharmacophore is correctly enbled
+    pharms: dict = pms_json.load(find_pharms_op / "mole5.json")
+    supplier = Chem.SDMolSupplier(
+        str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
+    )
+    inter_dict = {"HBDonor":[16,17,18,19,20,21]}
+    result = get_valid_pharms(pharms, supplier[0], inter_dict)
+    assert(result[1])
+    assert(result.count(True) == 1)
