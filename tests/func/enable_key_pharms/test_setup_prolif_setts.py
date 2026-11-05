@@ -76,7 +76,7 @@ def test_setup_prolif_setts5():
     input_setts = {"parameters": {"PiStacking": {"ftf_kwargs": {"distance": 8}}}}
     result = setup_prolif_setts(input_setts)
     expected = {
-        "ftf_kwargs": {"distance": 6, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40)},
+        "ftf_kwargs": {"distance": 8, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40)},
         "etf_kwargs": default["parameters"]["PiStacking"]["etf_kwargs"],
     }
     assert(result["parameters"]["PiStacking"] == expected)

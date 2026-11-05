@@ -17,7 +17,7 @@ def test_get_valid_pharms1(find_pharms_op):
     supplier = Chem.SDMolSupplier(
         str(find_pharms_op / "mole5.sdf"), sanitize=True, removeHs=False, strictParsing=True
     )
-    result = get_valid_pharms({}, supplier[0], {})
+    result = get_valid_pharms(pharms, supplier[0], {})
     for bl in result:
         assert(not bl)
 
