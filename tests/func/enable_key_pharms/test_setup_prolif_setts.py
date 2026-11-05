@@ -73,10 +73,10 @@ def test_setup_prolif_setts4():
 def test_setup_prolif_setts5():
     # merge goes all the way down the nested dicts
     default = setup_prolif_setts({})
-    input_setts = {"parameters": {"PiStacking": {"ftf_kwargs": {"distance": 6}}}}
+    input_setts = {"parameters": {"PiStacking": {"ftf_kwargs": {"distance": 8}}}}
     result = setup_prolif_setts(input_setts)
     expected = {
-        "ftf_kwargs": {"distance": 6},
+        "ftf_kwargs": {"distance": 6, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40)},
         "etf_kwargs": default["parameters"]["PiStacking"]["etf_kwargs"],
     }
     assert(result["parameters"]["PiStacking"] == expected)
@@ -115,15 +115,15 @@ def test_setup_prolif_setts9():
         "interactions": ["Hydrophobic", "HBDonor"],
         "parameters": {
             "Hydrophobic": {"distance": 7},
-            "PiStacking": {"etf_kwargs": {"distance": 6}},
+            "PiStacking": {"etf_kwargs": {"distance": 8}},
         },
     }
     result = setup_prolif_setts(input_setts)
     assert(result["vicinity_cutoff"] == 6)
     assert(result["interactions"] == ["Hydrophobic", "HBDonor"])
     assert(result["parameters"]["Hydrophobic"] == {"distance": 7})
-    assert(result["parameters"]["PiStacking"]["etf_kwargs"] == {"distance": 6})
-    assert(result["parameters"]["PiStacking"]["ftf_kwargs"] == {"distance": 8})
+    assert(result["parameters"]["PiStacking"]["etf_kwargs"] == {"distance": 8})
+    assert(result["parameters"]["PiStacking"]["ftf_kwargs"] == {"distance": 6})
     assert(result["parameters"]["Anionic"] == default["parameters"]["Anionic"])
 
 
