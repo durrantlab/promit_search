@@ -18,14 +18,16 @@ PROT_FILE: Path = (INPUT_DIR / "prot.pdb").resolve()
 SDF_DIR: Path = (INPUT_DIR / "find_pharms_op").resolve()
 
 def test():
+    SDF_FILE: Path = (SDF_DIR / "mole6.sdf").resolve()
+    
     rdkit_prot = Chem.MolFromPDBFile(str(PROT_FILE), removeHs=False)
     protein_mol = plf.Molecule(rdkit_prot)
     prolif_settings = setup_prolif_setts({})  
-    result = find_interactions((SDF_DIR / "mole5.sdf"), 
+    result = find_interactions(SDF_FILE, 
         protein_mol, prolif_settings)
     print(result)
 
-    write_interaction_pymol_script(result, (SDF_DIR / "mole6.sdf"), PROT_FILE, 
+    write_interaction_pymol_script(result, SDF_FILE, PROT_FILE, 
         (LOCAL_DIR / "output" / "test2.pml"), 7)
 
 
