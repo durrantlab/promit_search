@@ -25,8 +25,8 @@ def test():
         protein_mol, prolif_settings)
     print(result)
 
-    write_interaction_pymol_script(result, (SDF_DIR / "mole5.sdf"), PROT_FILE, 
-        (LOCAL_DIR / "output" / "test.pml"), 7)
+    write_interaction_pymol_script(result, (SDF_DIR / "mole6.sdf"), PROT_FILE, 
+        (LOCAL_DIR / "output" / "test2.pml"), 7)
 
 
 
