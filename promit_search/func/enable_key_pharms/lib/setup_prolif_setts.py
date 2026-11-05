@@ -14,6 +14,7 @@ def setup_prolif_setts(input_setts: dict) -> dict:
     """
     def_settings: dict = {
         "vicinity_cutoff": 10,
+        "count": True,
         "interactions": [
             "Hydrophobic",
             "HBDonor",
@@ -26,13 +27,14 @@ def setup_prolif_setts(input_setts: dict) -> dict:
         ],
         "parameters": {
                 "Hydrophobic": {"distance": 5},
-                "HBDonor": {"distance": 4.0},
-                "HBAcceptor": {"distance": 4.0},
-                "Anionic": {"distance": 8},
-                "Cationic": {"distance": 8},
+                "HBDonor": {"distance": 4.0, "DHA_angle": (110, 180)},
+                "HBAcceptor": {"distance": 4.0, "DHA_angle": (110, 180)},
+                "Anionic": {"distance": 8, "angle": (0, 40)},
+                "Cationic": {"distance": 8, "angle": (0, 40)},
                 "PiStacking": {
-                    "ftf_kwargs": {"distance": 8},
-                    "etf_kwargs": {"distance": 8},
+                    "ftf_kwargs": {"distance": 8, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40)},
+                    "etf_kwargs": {"distance": 8, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40), 
+                                   "intersect_radius":1.5},
                 },
             }
     }
