@@ -32,8 +32,8 @@ def setup_prolif_setts(input_setts: dict) -> dict:
                 "Anionic": {"distance": 8},
                 "Cationic": {"distance": 8},
                 "PiStacking": {
-                    "ftf_kwargs": {"distance": 8, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40)},
-                    "etf_kwargs": {"distance": 8, "plane_angle": (40, 90), "normal_to_centroid_angle": (0, 40), 
+                    "ftf_kwargs": {"distance": 6, "plane_angle": (0, 40), "normal_to_centroid_angle": (0, 40)},
+                    "etf_kwargs": {"distance": 6, "plane_angle": (40, 90), "normal_to_centroid_angle": (0, 40), 
                                    "intersect_radius":1.5},
                 },
             }
