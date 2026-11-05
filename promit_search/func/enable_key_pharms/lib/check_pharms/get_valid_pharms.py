@@ -38,6 +38,8 @@ def get_valid_pharms(
                 if_pharm.append(_check_pi(inter_dict[prolif_inter_type], mol, pharm_loc, pharm_type))
             else:
                 if_pharm.append(_check_other(inter_dict[prolif_inter_type], mol, pharm_loc, pharm_type))
+        else:
+            if_pharm.append(False)
     return if_pharm
 
 
